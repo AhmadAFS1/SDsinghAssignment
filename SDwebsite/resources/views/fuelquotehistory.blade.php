@@ -9,7 +9,7 @@
                 <div class="card-header">{{ __('Fuel Quote History') }}</div>
 
                     <div class="card-body">
-                        <h1> History (Note for future : $orders from controller and $order to dynamically show order drom Database)</h1>
+                       <!-- <h1> History (Note for future : $orders from controller and $order to dynamically show order drom Database)</h1> -->
 
                         <table class = "card body">
                             <tr>
