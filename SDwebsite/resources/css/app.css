@@ -56,16 +56,15 @@ dropdown input:checked ~ ul{
   top: 0;
 }
 
-table {
+.py-4 #table_thingy table td th {
   width: 100%;
   border-collapse: collapse;
-}
-
-td, th {
   border: 0.3vw double #dddddd;
   text-align: left;
   padding: 0.4vw;
 }
+
+
 
 $colors: #FFFFFF, #0072B5, #2C3E50;
 
