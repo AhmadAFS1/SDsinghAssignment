@@ -21,10 +21,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+/*
 Route::get('/profile', function () {
-    return view('profile');
-});
+    //return view('profile' , 'ProfilesController@edit') -> name('profile.edit-profile'); 
+    return view('profile'); 
+});*/
+
+Route::get('profile', 'ProfilesController@index')->name('profile');
+
+Route::put('profile', 'ProfilesController@update')->name('profile.update-profile');
 
 Route::get('/fuelquoteform', function () {
     return view('fuelquoteform');

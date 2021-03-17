@@ -33,6 +33,9 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
+
+    protected $namespace = 'App\Http\Controllers'; //ADDED THIS TO FIX CONTROLLER UNDETECTED ISSUE 
+
     public function boot()
     {
         $this->configureRateLimiting();

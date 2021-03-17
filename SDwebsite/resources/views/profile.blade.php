@@ -5,17 +5,19 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Edit My Profile') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="">
+                    <form method="POST" action="{{ route('profile.update-profile') }}">
                         @csrf
+
+                        @method('PUT')
 
                         <div class="form-group row">
                             <label for="Full Name" class="col-md-4 col-form-label text-md-right">{{ __('Full Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" >
+                                <input name= "name" id="name" type="text" value = "{{ $user->name }}">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -25,11 +27,12 @@
                             </div>
                         </div>
 
+                        <!-- DONT FORGET TO ADD USER ADDRESS AND EVERYTHING TO USER TABLE 
                         <div class="form-group row">
                             <label for="Address" class="col-md-4 col-form-label text-md-right">{{ __('Address 1') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Address" type="text" >
+                                <input id="Address" type="text" value = "{{ $user->address }}" >
 
                                 @error('Address')
                                     <span class="invalid-feedback" role="alert">
@@ -60,7 +63,7 @@
                                 <input id="City" type="text" >
 
                                 @error('Address')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback" role="alert" value = "">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
@@ -95,7 +98,7 @@
                                 @enderror
                             </div>
                         </div>
-
+                        -->
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -103,7 +106,7 @@
                                 </button>
                             </div>
                         </div>
-
+                        
                     </form>
                 </div>
             </div>
