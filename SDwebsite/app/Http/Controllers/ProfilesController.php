@@ -14,7 +14,8 @@ class ProfilesController extends Controller
     public function update(Request $request){
     	 $user =  auth()->user();
     	 $user-> update([
-    	 	'name' => $request->name
+    	 	'name' => $request->name,
+    	 	'address1' => $request->address1
     	 ]);
     	 //session()->flash('success', 'User updated successfully'); 
     	 return redirect()->route('home');; 

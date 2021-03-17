@@ -27,12 +27,12 @@
                             </div>
                         </div>
 
-                        <!-- DONT FORGET TO ADD USER ADDRESS AND EVERYTHING TO USER TABLE 
+                        
                         <div class="form-group row">
                             <label for="Address" class="col-md-4 col-form-label text-md-right">{{ __('Address 1') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Address" type="text" value = "{{ $user->address }}" >
+                                <input name = "address1" id="address1" type="text" value = "{{ $user->address1 }}" >
 
                                 @error('Address')
                                     <span class="invalid-feedback" role="alert">
@@ -41,7 +41,7 @@
                                 @enderror
                             </div>
                         </div>
-
+<!-- DONT FORGET TO ADD USER ADDRESS AND EVERYTHING TO USER TABLE 
                         <div class="form-group row">
                             <label for="Address2" class="col-md-4 col-form-label text-md-right">{{ __('Address 2') }}</label>
 
