@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuoteHistoryController;
-
+use App\Http\Controllers\QuoteFormController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,10 +31,14 @@ Route::get('profile', 'ProfilesController@index')->name('profile');
 
 Route::put('profile', 'ProfilesController@update')->name('profile.update-profile');
 
-Route::get('/fuelquoteform', function () {
-    return view('fuelquoteform');
-});
+//Route::get('fuelquoteform', function () {
+    //return view('fuelquoteform');
+//});
 
-Route::view('/fuelquotehistory', 'fuelquotehistory');
+Route::view('fuelquoteform', 'fuelquoteform');
+Route::post('fuelquoteform', [QuoteFormController::class,'addHistory']);
+
+Route::view('fuelquotehistory', 'fuelquotehistory');
+
 
 Route::get('History', [QuoteHistoryController::class, 'show']);

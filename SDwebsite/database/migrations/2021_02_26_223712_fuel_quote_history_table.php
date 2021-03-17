@@ -11,14 +11,18 @@ class FuelQuoteHistoryTable extends Migration
      *
      * @return void
      */
+    public $timestamps = false;
     public function up()
     {
-        Schema::create('History', function($t) {
+        Schema::create('quote_histories', function($t) {
             $t -> increments('id');
-            $t -> string('title', 200);
-            $t -> string('description', 500);
-            $t -> text('body');
+            $t -> double('Gallons', 200)->nullable();
+            $t -> string('Address', 500)->nullable();
+            $t -> timestamp('start')->nullable();
+            $t -> string('City', 200)->nullable();
+            $t -> double('Due')->nullable();
         });
+
     }
 
     /**
@@ -28,6 +32,6 @@ class FuelQuoteHistoryTable extends Migration
      */
     public function down()
     {
-        Schema::drop('History');
+        Schema::drop('quote_histories');
     }
 }
