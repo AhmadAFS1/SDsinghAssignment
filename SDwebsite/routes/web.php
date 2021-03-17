@@ -27,9 +27,9 @@ Route::get('/profile', function () {
     return view('profile'); 
 });*/
 
-//Route::get('profile', [ProfilesController::class, 'show']);
+Route::get('profile', 'ProfilesController@index')->name('profile');
 
-Route::view('/profile', 'profile')->name('edit-profile');
+Route::put('profile', 'ProfilesController@update')->name('profile.update-profile');
 
 Route::get('/fuelquoteform', function () {
     return view('fuelquoteform');

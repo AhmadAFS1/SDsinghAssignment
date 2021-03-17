@@ -3,17 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Request;
-use App\Models\profile;
 
 class ProfilesController extends Controller
 {
-    function show()
-    {
-   //   $data = QuoteHistory::all();
-   //   return view('fuelquotehistory', 'orders' => $data);   uncomment once DB is implemented
-      
-      return view('profile');
-      
+    public function index(){
+    	$user =  auth()->user(); 
+    	return view('profile')->withUser($user); 
     }
+
+    public function update(Request $request){
+    	 $user =  auth()->user();
+    	 $user-> update([
+    	 	'name' => $request->name
+    	 ]);
+    	 //session()->flash('success', 'User updated successfully'); 
+    	 return redirect()->route('home');; 
+    }
+
+
+
 }
