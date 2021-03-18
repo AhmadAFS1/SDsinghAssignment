@@ -15,7 +15,12 @@ class ProfilesController extends Controller
     	 $user =  auth()->user();
     	 $user-> update([
     	 	'name' => $request->name,
-    	 	'address1' => $request->address1
+    	 	'address1' => $request->address1,
+    	 	'address2' => $request->address2,
+    	 	'city' => $request->city,
+    	 	'state' => $request->state,
+    	 	'zipcode' => $request->zipcode,
+    	 	
     	 ]);
     	 //session()->flash('success', 'User updated successfully'); 
     	 return redirect()->route('home');; 

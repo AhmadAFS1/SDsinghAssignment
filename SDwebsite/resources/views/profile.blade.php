@@ -32,7 +32,7 @@
                             <label for="Address" class="col-md-4 col-form-label text-md-right">{{ __('Address 1') }}</label>
 
                             <div class="col-md-6">
-                                <input name = "address1" id="address1" type="text" value = "{{ $user->address1 }}" >
+                                <input name = "address1" id="address1" type="text" pattern="\d+[ ](?:[A-Za-z0-9.-]+[ ]?)+(?:Avenue|Lane|Road|Boulevard|Drive|Street|Ave|Dr|Rd|Blvd|Ln|St)\.?" title="Address" value = "{{ $user->address1 }}" >
 
                                 @error('Address')
                                     <span class="invalid-feedback" role="alert">
@@ -41,12 +41,12 @@
                                 @enderror
                             </div>
                         </div>
-<!-- DONT FORGET TO ADD USER ADDRESS AND EVERYTHING TO USER TABLE 
+
                         <div class="form-group row">
                             <label for="Address2" class="col-md-4 col-form-label text-md-right">{{ __('Address 2') }}</label>
 
                             <div class="col-md-6">
-                                <input id="Address" type="text" >
+                                <input name = "address2" id="address2" type="text" value = "{{ $user->address2 }}" >
 
                                 @error('Address')
                                     <span class="invalid-feedback" role="alert">
@@ -55,12 +55,12 @@
                                 @enderror
                             </div>
                         </div>
-                        
+                   
                         <div class="form-group row">
                             <label for="City" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
 
                             <div class="col-md-6">
-                                <input id="City" type="text" >
+                                <input name = "city" id="city" type="text" pattern="[a-zA-Z ]*" title="name of city" value = "{{ $user->city }}" >
 
                                 @error('Address')
                                     <span class="invalid-feedback" role="alert" value = "">
@@ -74,13 +74,66 @@
                             <label for="State" class="col-md-4 col-form-label text-md-right">{{ __('State') }}</label>
 
                             <div class="col-md-6">
-                                <input id="State" type="text" >
+                                <!--<input name = "state" id="state" type="text" value = "{{ $user->state }}" >
 
                                 @error('State')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                @enderror--> 
+                                <select id = "state" >
+                                    <option value="AL">Alabama</option>
+                                    <option value="AK">Alaska</option>
+                                    <option value="AZ">Arizona</option>
+                                    <option value="AR">Arkansas</option>
+                                    <option value="CA">California</option>
+                                    <option value="CO">Colorado</option>
+                                    <option value="CT">Connecticut</option>
+                                    <option value="DE">Delaware</option>
+                                    <option value="DC">District Of Columbia</option>
+                                    <option value="FL">Florida</option>
+                                    <option value="GA">Georgia</option>
+                                    <option value="HI">Hawaii</option>
+                                    <option value="ID">Idaho</option>
+                                    <option value="IL">Illinois</option>
+                                    <option value="IN">Indiana</option>
+                                    <option value="IA">Iowa</option>
+                                    <option value="KS">Kansas</option>
+                                    <option value="KY">Kentucky</option>
+                                    <option value="LA">Louisiana</option>
+                                    <option value="ME">Maine</option>
+                                    <option value="MD">Maryland</option>
+                                    <option value="MA">Massachusetts</option>
+                                    <option value="MI">Michigan</option>
+                                    <option value="MN">Minnesota</option>
+                                    <option value="MS">Mississippi</option>
+                                    <option value="MO">Missouri</option>
+                                    <option value="MT">Montana</option>
+                                    <option value="NE">Nebraska</option>
+                                    <option value="NV">Nevada</option>
+                                    <option value="NH">New Hampshire</option>
+                                    <option value="NJ">New Jersey</option>
+                                    <option value="NM">New Mexico</option>
+                                    <option value="NY">New York</option>
+                                    <option value="NC">North Carolina</option>
+                                    <option value="ND">North Dakota</option>
+                                    <option value="OH">Ohio</option>
+                                    <option value="OK">Oklahoma</option>
+                                    <option value="OR">Oregon</option>
+                                    <option value="PA">Pennsylvania</option>
+                                    <option value="RI">Rhode Island</option>
+                                    <option value="SC">South Carolina</option>
+                                    <option value="SD">South Dakota</option>
+                                    <option value="TN">Tennessee</option>
+                                    <option value="TX">Texas</option>
+                                    <option value="UT">Utah</option>
+                                    <option value="VT">Vermont</option>
+                                    <option value="VA">Virginia</option>
+                                    <option value="WA">Washington</option>
+                                    <option value="WV">West Virginia</option>
+                                    <option value="WI">Wisconsin</option>
+                                    <option value="WY">Wyoming</option>
+                                </select>
                             </div>
                         </div>
 
@@ -89,7 +142,7 @@
                            
 
                             <div class="col-md-6">
-                                 <input type="text" pattern="[0-9]{5}" title="Five digit zip code" />
+                                 <input name = "zipcode" id = "zipcode" type="text" pattern="[0-9]{5}" title="Five digit zip code" value = "{{ $user->zipcode }}">
 
                                 @error('Zipcode')
                                     <span class="invalid-feedback" role="alert">
