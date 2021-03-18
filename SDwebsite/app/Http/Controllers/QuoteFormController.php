@@ -15,10 +15,10 @@ class QuoteFormController extends Controller
         $QuoteHistory -> Gallons = $req -> Gallons;
         $QuoteHistory -> Address = $req -> Address;
         $QuoteHistory -> start = $req -> start;
-        $QuoteHistory -> Suggested_Price = $req -> Suggested_Price;
-        $QuoteHistory -> Due = $req -> Due;
+        $QuoteHistory -> Suggested_Price = $req -> Price;
+        $QuoteHistory -> Due = ($req -> Gallons) * ($req -> Price);
         $QuoteHistory -> save();
-        redirect('fuelquoteform');
-        return response(['created'=>true], 201);
+        response(['created'=>true], 201);
+        return redirect('fuelquoteform');
     }
 }
