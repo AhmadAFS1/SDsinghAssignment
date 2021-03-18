@@ -58,14 +58,23 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item" href="{{ route('profile') }}">
+                                        My Profile
+                                    </a>
+
+                                    <a class="dropdown-item" href="http://127.0.0.1:8000/fuelquoteform">
+                                        Fuel Quote Form
+                                    </a>
+
+                                    <a class="dropdown-item" href="http://127.0.0.1:8000/fuelquotehistory">
+                                        Fuel Quote History
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
-                                    </a>
-
-                                    <a class="dropdown-item" href="{{ route('profile') }}">
-                                        My Profile
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
