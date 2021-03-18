@@ -32,7 +32,7 @@
                             <label for="Address" class="col-md-4 col-form-label text-md-right">{{ __('Address 1') }}</label>
 
                             <div class="col-md-6">
-                                <input name = "address1" id="address1" type="text" pattern="\d+[ ](?:[A-Za-z0-9.-]+[ ]?)+(?:Avenue|Lane|Road|Boulevard|Drive|Street|Ave|Dr|Rd|Blvd|Ln|St)\.?" title="Address" value = "{{ $user->address1 }}" >
+                                <input name = "address1" id="address1" type="text" pattern="\d+[ ](?:[A-Za-z0-9.-]+[ ]?)+(?:Avenue|Lane|Road|Boulevard|Drive|Street|Ave|Dr|Court|Rd|Blvd|Ln|St)\.?" title="Address" value = "{{ $user->address1 }}" >
 
                                 @error('Address')
                                     <span class="invalid-feedback" role="alert">

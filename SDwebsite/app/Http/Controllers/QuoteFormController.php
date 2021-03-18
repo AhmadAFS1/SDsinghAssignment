@@ -9,11 +9,13 @@ use App\Models\QuoteHistory;
 class QuoteFormController extends Controller
 {
     //
+    //$user =  auth()->user();
     function addHistory(Request $req)
-    {
+    {   
+        //$user =  auth()->user();
         $QuoteHistory = new QuoteHistory;
         $QuoteHistory -> Gallons = $req -> Gallons;
-        $QuoteHistory -> Address = $req -> Address;
+        $QuoteHistory -> Address = auth()->user()->address1;//Address = $req -> Address;
         $QuoteHistory -> start = $req -> start;
         $QuoteHistory -> City = $req -> City;
         $QuoteHistory -> Due = $req -> Due;

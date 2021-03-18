@@ -32,7 +32,12 @@
                             <label for="Address" class="col-md-4 col-form-label text-md-right">{{ __('Full Delivery Address') }}</label>
 
                             <div class="col-md-6">
+                                <!--
                                 <input name ="Address" type="text" pattern="[A-Za-z0-9'\.\-\s\,]" >
+                               -->
+                                <output name ="Address" value = "{{ auth()->user()->address1 }}">{{ auth()->user()->address1 }}</output>
+
+                                        
 
                                 @error('Address')
                                     <span class="invalid-feedback" role="alert">
@@ -41,7 +46,6 @@
                                 @enderror
                             </div>
                         </div>
-
                         <!-- INSERT DATE PICKER HERE -->
                         <div class="form-group row">
                             <label for="start" class="col-md-4 col-form-label text-md-right">{{ __('Delivery date') }}</label>
@@ -63,7 +67,7 @@
                             <label for="Price" class="col-md-4 col-form-label text-md-right">{{ __('Suggested Price/Gallon') }}</label>
 
                             <div class="col-md-6">
-                                <input name ="Price" id = "Price" type="text" pattern = "[0-9]" >
+                                < name ="Price" id = "Price" type="text" pattern = "[0-9]" >
 
                                 @error('Address')
                                     <span class="invalid-feedback" role="alert">
