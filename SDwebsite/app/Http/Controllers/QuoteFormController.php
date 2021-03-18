@@ -17,9 +17,10 @@ class QuoteFormController extends Controller
         $QuoteHistory -> Gallons = $req -> Gallons;
         $QuoteHistory -> Address = auth()->user()->address1;//Address = $req -> Address;
         $QuoteHistory -> start = $req -> start;
-        $QuoteHistory -> City = $req -> City;
-        $QuoteHistory -> Due = $req -> Due;
+        $QuoteHistory -> Suggested_Price = $req -> Price;
+        $QuoteHistory -> Due = ($req -> Gallons) * ($req -> Price);
         $QuoteHistory -> save();
+        response(['created'=>true], 201);
         return redirect('fuelquoteform');
     }
 }

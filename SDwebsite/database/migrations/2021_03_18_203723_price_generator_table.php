@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProfilesTable extends Migration
+class PriceGeneratorTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('profiles', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            
+        Schema::create('prices', function (Blueprint $table) {
+            $table->id();
+            $table->string('gallons');
+            // Here we add a boolean() to check if user data has 'state' == 'Texas'
+            // not sure how to do that
+
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ class CreateProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('prices');
     }
 }
