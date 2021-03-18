@@ -10,14 +10,15 @@
                 <div class="card-header">{{ __('Fuel Quote') }}</div>
 
                 <div class="card-body">
-                    <form action="fuelquoteform" method="POST">
+                    <form action="fuelquoteform" oninput="result.value = parseInt(Price.value)  
+                * parseInt(Gallons.value)" method="POST">
                         @csrf
 
                         <div class="form-group row">
                             <label for="Gallons" class="col-md-4 col-form-label text-md-right">{{ __('Gallons Requested') }}</label>
 
                             <div class="col-md-6">
-                                <input name ="Gallons" type="number" >
+                                <input name ="Gallons" id = "Gallons" type="number" pattern = "[0-9]">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -28,10 +29,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="Address" class="col-md-4 col-form-label text-md-right">{{ __('Delivery Address') }}</label>
+                            <label for="Address" class="col-md-4 col-form-label text-md-right">{{ __('Full Delivery Address') }}</label>
 
                             <div class="col-md-6">
-                                <input name ="Address" type="text" >
+                                <input name ="Address" type="text" pattern="[A-Za-z0-9'\.\-\s\,]" >
 
                                 @error('Address')
                                     <span class="invalid-feedback" role="alert">
@@ -76,7 +77,7 @@
                             <label for="Due" class="col-md-4 col-form-label text-md-right">{{ __('Total Amount Due') }}</label>
 
                             <div class="col-md-6">
-                                <input name ="Due" type="number" >
+                                <output name ="result" ></output>
 
                                 @error('Number')
                                     <span class="invalid-feedback" role="alert">
