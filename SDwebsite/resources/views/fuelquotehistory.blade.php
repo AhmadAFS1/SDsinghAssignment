@@ -10,46 +10,25 @@
                     <div class="card-body">
                        <!-- <h1> History (Note for future : $orders from controller and $order to dynamically show order drom Database)</h1> -->
 
-                        <table class = "card body">
+                        <table class = "card body-table">
                             <tr>
-                                <td>January 2nd 2021 </td>
-                                <td>Albert Winston-</td>
-                                <td>AlbertWinston@gmail.com-</td>
-                                <td>$9000-</td>
-                                <td>9171 Wilshire Boulevard, Beverly Hills, CA 90210</td>
-                            </tr>  
-
-                        </table>
-                        <table class = "card body">
+                                <td>        Gallons       </td>
+                                <td>        Address       </td>
+                                <td>     Delivery Date    </td>
+                                <td>    Suggested Price   </td>
+                                <td>   Total Amount Due   </td>
+                            </tr>
+                            @foreach ($collection as $item)
                             <tr>
-                                <td>January 3rd 2021 </td>
-                                <td>Albert Winston-</td>
-                                <td>AlbertWinston@gmail.com-</td>
-                                <td>$9000-</td>
-                                <td>9171 Wilshire Boulevard, Beverly Hills, CA 90210</td>
+                                <td>{{$item->Gallons }} gallon(s)</td>
+                                <td>{{$item->Address }}</td>
+                                <td>{{$item->start }}</td>
+                                <td>${{$item->Due }}</td>
+                                <td>${{$item->Due }}</td>
                             </tr>  
-
+                            @endforeach
                         </table>
-                        <table class = "card body">
-                            <tr>
-                                <td>January 4th 2021 </td>
-                                <td>Albert Winston-</td>
-                                <td>AlbertWinston@gmail.com-</td>
-                                <td>$9000-</td>
-                                <td>9171 Wilshire Boulevard, Beverly Hills, CA 90210</td>
-                            </tr>  
-
-                        </table>
-                        <table class = "card body">
-                            <tr>
-                                <td>January 5th 2021 </td>
-                                <td>Albert Winston-</td>
-                                <td>AlbertWinston@gmail.com-</td>
-                                <td>$9000-</td>
-                                <td>9171 Wilshire Boulevard, Beverly Hills, CA 90210</td>
-                            </tr>  
-
-                        </table>
+                        
 
                         
                                                     <!--<div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
@@ -68,11 +47,6 @@
                                                         </div>
                                                         
                                                     </div> -->
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>           
                 </div>
             </div>

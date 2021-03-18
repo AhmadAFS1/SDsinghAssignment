@@ -38,7 +38,10 @@ Route::put('profile', 'ProfilesController@update')->name('profile.update-profile
 Route::view('fuelquoteform', 'fuelquoteform');
 Route::post('fuelquoteform', [QuoteFormController::class,'addHistory']);
 
-Route::view('fuelquotehistory', 'fuelquotehistory');
+Route::get('fuelquotehistory', [QuoteHistoryController::class, 'index']);
 
 
-Route::get('History', [QuoteHistoryController::class, 'show']);
+//Route::view('fuelquotehistory', 'fuelquotehistory');
+
+
+//Route::get('History', [QuoteHistoryController::class, 'show']);
