@@ -10,7 +10,7 @@
                 <div class="card-header">{{ __('Fuel Quote') }}</div>
 
                 <div class="card-body">
-                    <form action="fuelquoteform" oninput="result.value = parseInt(Price.value)  
+                    <form action="fuelquoteform" oninput="result.value = parseInt('5')  
                 * parseInt(Gallons.value)" method="POST">
                         @csrf
 
@@ -32,10 +32,13 @@
                             <label for="Address" class="col-md-4 col-form-label text-md-right">{{ __('Full Delivery Address') }}</label>
 
                             <div class="col-md-6">
-                                <!--
-                                <input name ="Address" type="text" pattern="[A-Za-z0-9'\.\-\s\,]" >
-                               -->
-                                <output name ="Address" value = "{{ auth()->user()->address1 }}">{{ auth()->user()->address1 }}</output>
+                               
+                                <output name ="Address" value = "{{ auth()->user()->address1 }}">{{ auth()->user()->address1 }}
+                                
+                                {{ auth()->user()->city}} ,
+                                {{ auth()->user()->state}} 
+                                {{ auth()->user()->zipcode}}
+                                </output>
 
                                         
 
@@ -67,7 +70,7 @@
                             <label for="Price" class="col-md-4 col-form-label text-md-right">{{ __('Suggested Price/Gallon') }}</label>
 
                             <div class="col-md-6">
-                                < name ="Price" id = "Price" type="text" pattern = "[0-9]" >
+                                <output name ="Price" id = "Price" type="text" pattern = "[0-9]">5</output>
 
                                 @error('Address')
                                     <span class="invalid-feedback" role="alert">
