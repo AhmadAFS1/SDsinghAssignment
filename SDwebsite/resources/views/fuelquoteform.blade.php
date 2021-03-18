@@ -59,10 +59,10 @@
 
                         
                         <div class="form-group row">
-                            <label for="City" class="col-md-4 col-form-label text-md-right">{{ __('Suggested Price/Gallon') }}</label>
+                            <label for="Suggested_Price" class="col-md-4 col-form-label text-md-right">{{ __('Suggested Price/Gallon') }}</label>
 
                             <div class="col-md-6">
-                                <input name ="City" type="text" >
+                                <input name ="Suggested_Price" type="text" >
 
                                 @error('Address')
                                     <span class="invalid-feedback" role="alert">

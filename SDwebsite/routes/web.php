@@ -27,18 +27,18 @@ Route::get('/profile', function () {
     return view('profile'); 
 });*/
 
-Route::get('profile', 'ProfilesController@index')->name('profile');
+Route::get('/profile', 'ProfilesController@index')->name('profile');
 
-Route::put('profile', 'ProfilesController@update')->name('profile.update-profile');
+Route::put('/profile', 'ProfilesController@update')->name('profile.update-profile');
 
 //Route::get('fuelquoteform', function () {
     //return view('fuelquoteform');
 //});
 
-Route::view('fuelquoteform', 'fuelquoteform');
-Route::post('fuelquoteform', [QuoteFormController::class,'addHistory']);
+Route::view('/fuelquoteform', 'fuelquoteform');
+Route::post('/fuelquoteform', [QuoteFormController::class,'addHistory']);
 
-Route::get('fuelquotehistory', [QuoteHistoryController::class, 'index']);
+Route::get('/fuelquotehistory', [QuoteHistoryController::class, 'index']);
 
 
 //Route::view('fuelquotehistory', 'fuelquotehistory');
