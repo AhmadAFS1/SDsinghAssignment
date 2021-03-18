@@ -16,11 +16,11 @@ class FuelQuoteHistoryTable extends Migration
     {
         Schema::create('quote_histories', function($t) {
             $t -> increments('id');
-            $t -> double('Gallons', 200)->nullable();
+            $t -> float('Gallons', 200)->nullable();
             $t -> string('Address', 500)->nullable();
             $t -> timestamp('start')->nullable();
-            $t -> double('Suggested_Price')->nullable();
-            $t -> double('Due')->nullable();
+            $t -> float('Suggested_Price')->nullable();
+            $t -> float('Due')->nullable();
         });
 
     }

@@ -10,15 +10,14 @@
                 <div class="card-header">{{ __('Fuel Quote') }}</div>
 
                 <div class="card-body">
-                    <form action="fuelquoteform" oninput="result.value = parseInt(Price.value)  
-                * parseInt(Gallons.value)" method="POST">
+                    <form action="fuelquoteform" oninput="result.value = ((parseFloat(Price.value) * parseFloat(Gallons.value)).toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')" method="POST">
                         @csrf
 
                         <div class="form-group row">
                             <label for="Gallons" class="col-md-4 col-form-label text-md-right">{{ __('Gallons Requested') }}</label>
 
                             <div class="col-md-6">
-                                <input name ="Gallons" id = "Gallons" type="number" pattern = "[0-9]">
+                                <input name ="Gallons" id = "Gallons" type="number" pattern = "[0-9]" step="0.01">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -60,10 +59,10 @@
 
                         
                         <div class="form-group row">
-                            <label for="Suggested_Price" class="col-md-4 col-form-label text-md-right">{{ __('Suggested Price/Gallon') }}</label>
+                            <label for="Price" class="col-md-4 col-form-label text-md-right">{{ __('Suggested Price/Gallon') }}</label>
 
                             <div class="col-md-6">
-                                <input name ="Suggested_Price" type="text" >
+                                <input name ="Price" type="number" step="0.01">
 
                                 @error('Address')
                                     <span class="invalid-feedback" role="alert">
@@ -77,7 +76,7 @@
                             <label for="Due" class="col-md-4 col-form-label text-md-right">{{ __('Total Amount Due') }}</label>
 
                             <div class="col-md-6">
-                                <output name ="result" ></output>
+                                $<output name ="result" ></output>
 
                                 @error('Number')
                                     <span class="invalid-feedback" role="alert">
