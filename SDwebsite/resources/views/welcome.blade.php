@@ -38,8 +38,11 @@
                         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
                     </div>
                     <form action="fuelquoteform"><button>Fuel Quote</button></form>
+                    @auth
                     <form action="fuelquotehistory"><button>Fuel Quote History</button></form>
-                    <form action="profile"><button>Profile</button></form>
+                    <form action="{{ route('profile') }}"><button>My Profile</button></form>
+                    <p style="color: white">{{ __('You are logged in!') }}</p>
+                    @endauth
                     @if (Route::has('login'))
                         <div class="ml-4 text-center text-sm text-gray-500 sm:text-center sm:ml-0">
                             @auth

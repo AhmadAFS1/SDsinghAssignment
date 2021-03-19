@@ -63,11 +63,11 @@
                                         My Profile
                                     </a>
 
-                                    <a class="dropdown-item" href="http://127.0.0.1:8000/fuelquoteform">
+                                    <a class="dropdown-item" href="fuelquoteform">
                                         Fuel Quote Form
                                     </a>
 
-                                    <a class="dropdown-item" href="http://127.0.0.1:8000/fuelquotehistory">
+                                    <a class="dropdown-item" href="fuelquotehistory">
                                         Fuel Quote History
                                     </a>
 

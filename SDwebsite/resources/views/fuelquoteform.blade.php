@@ -32,15 +32,20 @@
                             <label for="Address" class="col-md-4 col-form-label text-md-right">{{ __('Full Delivery Address') }}</label>
 
                             <div class="col-md-6">
-                               
-                                <output name ="Address" value = "{{ auth()->user()->address1 }}">{{ auth()->user()->address1 }}
-                                
-                                {{ auth()->user()->city}} ,
-                                {{ auth()->user()->state}} 
-                                {{ auth()->user()->zipcode}}
-                                </output>
-
-                                        
+                                @auth
+                                    <output name ="Address" value = "{{ auth()->user()->address1 }}">{{ auth()->user()->address1 }}
+                                    {{ auth()->user()->city}} ,
+                                    {{ auth()->user()->state}} 
+                                    {{ auth()->user()->zipcode}}
+                                    </output>
+                                    
+                                @else
+                                    <p>1010 Colorado St
+                                    Austin,
+                                    TX 
+                                    78701
+                                    </p>
+                                @endauth
 
                                 @error('Address')
                                     <span class="invalid-feedback" role="alert">
@@ -95,7 +100,7 @@
                         </div>
 
                         
-
+                        @auth
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -103,6 +108,7 @@
                                 </button>
                             </div>
                         </div>
+                        @endauth
 
                     </form>
                 </div>
