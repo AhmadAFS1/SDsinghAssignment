@@ -13,6 +13,7 @@ class QuoteFormController extends Controller
     function addHistory(Request $req)
     {   
         //$user =  auth()->user();
+        /*
         try 
         {
             $address = (auth()->user()->address1);
@@ -22,7 +23,13 @@ class QuoteFormController extends Controller
             $fulladdress = $address." ".$city.", ".$state." ".$zip;
         }
         catch (exception $e) {
-            $fulladdress = "1010 Colorado St, Austin, TX 78701";
+            $fulladdress = "No address given!\nUsing Texas Price ($5) as default";
+        }
+        */
+        
+        if(empty($address) || empty($city) || empty($state) || empty($zip))
+        {
+            $fulladdress = "Full address not given!\nUsing Texas Price ($5) as default";
         }
         
         $QuoteHistory = new QuoteHistory;

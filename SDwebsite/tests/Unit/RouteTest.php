@@ -3,8 +3,6 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefereshDatabase;
 
 class SDwebsiteTest extends TestCase
 {
@@ -23,7 +21,11 @@ class SDwebsiteTest extends TestCase
         $response->assertStatus(200);
         $response = $this->get('/home');
         $response->assertStatus(302);
-        $response = $this->get('/profile');
-        $response->assertStatus(500);
+        $response = $this->get('/login');
+        $response->assertSuccessful();
+        $response->assertViewIs('auth.login');
+        $response = $this->get('/register');
+        $response->assertSuccessful();
+        $response->assertViewIs('auth.register');
     }
 }
