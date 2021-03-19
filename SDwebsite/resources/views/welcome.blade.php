@@ -42,6 +42,8 @@
                     <form action="fuelquotehistory"><button>Fuel Quote History</button></form>
                     <form action="{{ route('profile') }}"><button>My Profile</button></form>
                     <p style="color: white">{{ __('You are logged in!') }}</p>
+                    @else
+                    <p style="color: white">{{ __('You are a Guest! Register?') }}</p>
                     @endauth
                     @if (Route::has('login'))
                         <div class="ml-4 text-center text-sm text-gray-500 sm:text-center sm:ml-0">
