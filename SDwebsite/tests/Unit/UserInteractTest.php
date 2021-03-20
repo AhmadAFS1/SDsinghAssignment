@@ -27,23 +27,33 @@ class UserInteractTest extends TestCase
 
 
         
-        $response = $this -> json('POST', '/profile', ['name'=>"Larry Test", 'address1'=>"638 Glen Ridge Drive", 
+        $response = $this -> json('PUT', '/profile', ['name'=>"Larry Test", 'address1'=>"638 Glen Ridge Drive", 
         "city" => "Uniondale", "state"=> "NY", "zipcode" => "11553" ]);
         $response
         ->assertStatus(302);
 
-        $response = $this -> json('POST', '/profile', ['name'=>"Larry Test", 'address1'=>"638 Glen Ridge Drive", 
+        $response = $this -> json('PUT', '/profile', ['name'=>"Larry Test", 'address1'=>"638 Glen Ridge Drive", 
         "city" => "Uniondale", "state"=> 430, "zipcode" => "11553" ]);
         $response
         ->assertStatus(500);
 
-        $response = $this -> json('POST', '/profile', ['name'=>"Larry Test", 'address1'=>"638 Glen Ridge Drive", 
+        $response = $this -> json('PUT', '/profile', ['name'=>"Larry Test", 'address1'=>"638 Glen Ridge Drive", 
         "city" => 1234, "state"=> "NY", "zipcode" => "11553" ]);
         $response
         ->assertStatus(500);
 
-        $response = $this -> json('POST', '/profile', ['name'=>55555, 'address1'=>"638 Glen Ridge Drive", 
+        $response = $this -> json('PUT', '/profile', ['name'=>55555, 'address1'=>"638 Glen Ridge Drive", 
         "city" => "Uniondale", "state"=> "NY", "zipcode" => "11553" ]);
+        $response
+        ->assertStatus(500);
+
+        $response = $this -> json('PUT', '/profile', ['name'=>"Larry Test", 'address1'=>52325, 
+        "city" => "Uniondale", "state"=> "NY", "zipcode" => "11553" ]);
+        $response
+        ->assertStatus(500);
+
+        $response = $this -> json('PUT', '/profile', ['name'=>"Larry Test", 'address1'=>52325, 
+        "city" => "Uniondale", "state"=> "NY", "zipcode" => 12345 ]);
         $response
         ->assertStatus(500);
     }
