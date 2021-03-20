@@ -28,5 +28,8 @@ class ResponseTest extends TestCase
                                                             'start'=>"2021-10-10"]);
         $response
         ->assertStatus(500);
+
+       
+        
     }
 }
