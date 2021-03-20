@@ -48,15 +48,38 @@ class ResponseTest extends TestCase
          *
          * @return void
          */
-        $response = $this->post('/register', [
+
+        $response = $this -> json('POST', '/register', [
             'name' => 'asd',
             'email' => 'asdasd@asd',
             'password' => 'testpass',
-            'password_confirmation' => 'testpass',
-        ])
-        ->assertRedirect('/home');
+            'password_confirmation' => 'testpass'])
+            ->assertStatus(201);
 
         $response = $this->assertDatabaseHas('users', ['name' => 'asd']);
+    }
+
+    public function test_register_with_wrong_confirm_password()
+    {
+        /**
+         * Test Auth user profile data
+         *
+         * @return void
+         */
+
+        $response = $this -> json('POST', '/register', [
+            'name' => 'asd2',
+            'email' => 'asdasd2@asd',
+            'password' => 'testpasst',
+            'password_confirmation' => 'testpass'])
+            ->assertStatus(422);
+        $isExist = User::select('*')
+        ->where('name', 'asd2')
+        ->exists();
+        if($isExist)
+        $response = $this->assertTrue(False);
+        else
+        $response = $this->assertTrue(True);
     }
 
     public function test_register_with_existed_email()
@@ -66,25 +89,20 @@ class ResponseTest extends TestCase
          *
          * @return void
          */
-        $response = $this->post('/register', [
+        $response = $this -> json('POST', '/register', [
             'name' => 'asd',
             'email' => 'asdasd@asd',
             'password' => 'testpass',
-            'password_confirmation' => 'testpass',
-        ]);
+            'password_confirmation' => 'testpass'])
+            ->assertStatus(201);
 
-        $response = $this->post('/register', [
-            'name' => 'asdasd',
+        $response = $this->assertDatabaseHas('users', ['name' => 'asd']);
+
+        $response = $this -> json('POST', '/register', [
+            'name' => 'asd2',
             'email' => 'asdasd@asd',
             'password' => 'testpass',
-            'password_confirmation' => 'testpass',
-        ]);
-        $isExist = User::select('*')
-        ->where('name', 'asdasd')
-        ->exists();
-        if($isExist)
-        $response = $this->assertTrue(False);
-        else
-        $response = $this->assertTrue(True);
+            'password_confirmation' => 'testpass'])
+            ->assertStatus(302);
     }
 }
