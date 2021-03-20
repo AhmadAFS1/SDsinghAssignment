@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => 'c3be095190666d29b1e01ae8197d9d2ee70d2c0d',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -429,6 +429,15 @@
         0 => '*',
       ),
     ),
+    'laravel/browser-kit-testing' => 
+    array (
+      'pretty_version' => 'v6.2.2',
+      'version' => '6.2.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'a8bc92f2bb91db210ed2d8cbf4d6b16fa49453dc',
+    ),
     'laravel/framework' => 
     array (
       'pretty_version' => 'v8.29.0',
@@ -440,12 +449,12 @@
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => 'c3be095190666d29b1e01ae8197d9d2ee70d2c0d',
     ),
     'laravel/sail' => 
     array (
@@ -1004,6 +1013,15 @@
       array (
       ),
       'reference' => '5fa56b4074d1ae755beb55617ddafe6f5d78f665',
+    ),
+    'symfony/dom-crawler' => 
+    array (
+      'pretty_version' => 'v5.2.4',
+      'version' => '5.2.4.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '400e265163f65aceee7e904ef532e15228de674b',
     ),
     'symfony/error-handler' => 
     array (

@@ -9,8 +9,8 @@ class ComposerStaticInit9db131915055f3cf216cecaca0913f7d
     public static $files = array (
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
-        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
@@ -87,6 +87,7 @@ class ComposerStaticInit9db131915055f3cf216cecaca0913f7d
             'Symfony\\Component\\Finder\\' => 25,
             'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\ErrorHandler\\' => 31,
+            'Symfony\\Component\\DomCrawler\\' => 29,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
         ),
@@ -128,6 +129,7 @@ class ComposerStaticInit9db131915055f3cf216cecaca0913f7d
             'Laravel\\Ui\\' => 11,
             'Laravel\\Tinker\\' => 15,
             'Laravel\\Sail\\' => 13,
+            'Laravel\\BrowserKitTesting\\' => 26,
         ),
         'I' => 
         array (
@@ -308,6 +310,10 @@ class ComposerStaticInit9db131915055f3cf216cecaca0913f7d
         array (
             0 => __DIR__ . '/..' . '/symfony/error-handler',
         ),
+        'Symfony\\Component\\DomCrawler\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/dom-crawler',
+        ),
         'Symfony\\Component\\CssSelector\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/css-selector',
@@ -399,6 +405,10 @@ class ComposerStaticInit9db131915055f3cf216cecaca0913f7d
         'Laravel\\Sail\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/sail/src',
+        ),
+        'Laravel\\BrowserKitTesting\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel/browser-kit-testing/src',
         ),
         'Illuminate\\Support\\' => 
         array (
@@ -2549,6 +2559,30 @@ class ComposerStaticInit9db131915055f3cf216cecaca0913f7d
         'Illuminate\\View\\ViewName' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewName.php',
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'Laravel\\BrowserKitTesting\\Concerns\\ImpersonatesUsers' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Concerns/ImpersonatesUsers.php',
+        'Laravel\\BrowserKitTesting\\Concerns\\InteractsWithAuthentication' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Concerns/InteractsWithAuthentication.php',
+        'Laravel\\BrowserKitTesting\\Concerns\\InteractsWithConsole' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Concerns/InteractsWithConsole.php',
+        'Laravel\\BrowserKitTesting\\Concerns\\InteractsWithContainer' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Concerns/InteractsWithContainer.php',
+        'Laravel\\BrowserKitTesting\\Concerns\\InteractsWithDatabase' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Concerns/InteractsWithDatabase.php',
+        'Laravel\\BrowserKitTesting\\Concerns\\InteractsWithExceptionHandling' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Concerns/InteractsWithExceptionHandling.php',
+        'Laravel\\BrowserKitTesting\\Concerns\\InteractsWithPages' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Concerns/InteractsWithPages.php',
+        'Laravel\\BrowserKitTesting\\Concerns\\InteractsWithSession' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Concerns/InteractsWithSession.php',
+        'Laravel\\BrowserKitTesting\\Concerns\\MakesHttpRequests' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Concerns/MakesHttpRequests.php',
+        'Laravel\\BrowserKitTesting\\Concerns\\MocksApplicationServices' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Concerns/MocksApplicationServices.php',
+        'Laravel\\BrowserKitTesting\\Constraints\\FormFieldConstraint' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Constraints/FormFieldConstraint.php',
+        'Laravel\\BrowserKitTesting\\Constraints\\HasElement' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Constraints/HasElement.php',
+        'Laravel\\BrowserKitTesting\\Constraints\\HasInElement' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Constraints/HasInElement.php',
+        'Laravel\\BrowserKitTesting\\Constraints\\HasLink' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Constraints/HasLink.php',
+        'Laravel\\BrowserKitTesting\\Constraints\\HasSource' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Constraints/HasSource.php',
+        'Laravel\\BrowserKitTesting\\Constraints\\HasText' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Constraints/HasText.php',
+        'Laravel\\BrowserKitTesting\\Constraints\\HasValue' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Constraints/HasValue.php',
+        'Laravel\\BrowserKitTesting\\Constraints\\IsChecked' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Constraints/IsChecked.php',
+        'Laravel\\BrowserKitTesting\\Constraints\\IsSelected' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Constraints/IsSelected.php',
+        'Laravel\\BrowserKitTesting\\Constraints\\PageConstraint' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Constraints/PageConstraint.php',
+        'Laravel\\BrowserKitTesting\\Constraints\\ReversePageConstraint' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/Constraints/ReversePageConstraint.php',
+        'Laravel\\BrowserKitTesting\\HttpException' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/HttpException.php',
+        'Laravel\\BrowserKitTesting\\TestCase' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/TestCase.php',
+        'Laravel\\BrowserKitTesting\\TestResponse' => __DIR__ . '/..' . '/laravel/browser-kit-testing/src/TestResponse.php',
         'Laravel\\Sail\\SailServiceProvider' => __DIR__ . '/..' . '/laravel/sail/src/SailServiceProvider.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
@@ -4466,6 +4500,22 @@ class ComposerStaticInit9db131915055f3cf216cecaca0913f7d
         'Symfony\\Component\\CssSelector\\XPath\\Translator' => __DIR__ . '/..' . '/symfony/css-selector/XPath/Translator.php',
         'Symfony\\Component\\CssSelector\\XPath\\TranslatorInterface' => __DIR__ . '/..' . '/symfony/css-selector/XPath/TranslatorInterface.php',
         'Symfony\\Component\\CssSelector\\XPath\\XPathExpr' => __DIR__ . '/..' . '/symfony/css-selector/XPath/XPathExpr.php',
+        'Symfony\\Component\\DomCrawler\\AbstractUriElement' => __DIR__ . '/..' . '/symfony/dom-crawler/AbstractUriElement.php',
+        'Symfony\\Component\\DomCrawler\\Crawler' => __DIR__ . '/..' . '/symfony/dom-crawler/Crawler.php',
+        'Symfony\\Component\\DomCrawler\\Field\\ChoiceFormField' => __DIR__ . '/..' . '/symfony/dom-crawler/Field/ChoiceFormField.php',
+        'Symfony\\Component\\DomCrawler\\Field\\FileFormField' => __DIR__ . '/..' . '/symfony/dom-crawler/Field/FileFormField.php',
+        'Symfony\\Component\\DomCrawler\\Field\\FormField' => __DIR__ . '/..' . '/symfony/dom-crawler/Field/FormField.php',
+        'Symfony\\Component\\DomCrawler\\Field\\InputFormField' => __DIR__ . '/..' . '/symfony/dom-crawler/Field/InputFormField.php',
+        'Symfony\\Component\\DomCrawler\\Field\\TextareaFormField' => __DIR__ . '/..' . '/symfony/dom-crawler/Field/TextareaFormField.php',
+        'Symfony\\Component\\DomCrawler\\Form' => __DIR__ . '/..' . '/symfony/dom-crawler/Form.php',
+        'Symfony\\Component\\DomCrawler\\FormFieldRegistry' => __DIR__ . '/..' . '/symfony/dom-crawler/FormFieldRegistry.php',
+        'Symfony\\Component\\DomCrawler\\Image' => __DIR__ . '/..' . '/symfony/dom-crawler/Image.php',
+        'Symfony\\Component\\DomCrawler\\Link' => __DIR__ . '/..' . '/symfony/dom-crawler/Link.php',
+        'Symfony\\Component\\DomCrawler\\Test\\Constraint\\CrawlerSelectorAttributeValueSame' => __DIR__ . '/..' . '/symfony/dom-crawler/Test/Constraint/CrawlerSelectorAttributeValueSame.php',
+        'Symfony\\Component\\DomCrawler\\Test\\Constraint\\CrawlerSelectorExists' => __DIR__ . '/..' . '/symfony/dom-crawler/Test/Constraint/CrawlerSelectorExists.php',
+        'Symfony\\Component\\DomCrawler\\Test\\Constraint\\CrawlerSelectorTextContains' => __DIR__ . '/..' . '/symfony/dom-crawler/Test/Constraint/CrawlerSelectorTextContains.php',
+        'Symfony\\Component\\DomCrawler\\Test\\Constraint\\CrawlerSelectorTextSame' => __DIR__ . '/..' . '/symfony/dom-crawler/Test/Constraint/CrawlerSelectorTextSame.php',
+        'Symfony\\Component\\DomCrawler\\UriResolver' => __DIR__ . '/..' . '/symfony/dom-crawler/UriResolver.php',
         'Symfony\\Component\\ErrorHandler\\BufferingLogger' => __DIR__ . '/..' . '/symfony/error-handler/BufferingLogger.php',
         'Symfony\\Component\\ErrorHandler\\Debug' => __DIR__ . '/..' . '/symfony/error-handler/Debug.php',
         'Symfony\\Component\\ErrorHandler\\DebugClassLoader' => __DIR__ . '/..' . '/symfony/error-handler/DebugClassLoader.php',
@@ -5066,7 +5116,9 @@ class ComposerStaticInit9db131915055f3cf216cecaca0913f7d
         'Symfony\\Polyfill\\Php80\\Php80' => __DIR__ . '/..' . '/symfony/polyfill-php80/Php80.php',
         'Tests\\CreatesApplication' => __DIR__ . '/../..' . '/tests/CreatesApplication.php',
         'Tests\\TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
+        'Tests\\Unit\\RegisterTest' => __DIR__ . '/../..' . '/tests/Unit/RegisterTest.php',
         'Tests\\Unit\\ResponseTest' => __DIR__ . '/../..' . '/tests/Unit/ResponseTest.php',
+        'Tests\\Unit\\UserInteractTest' => __DIR__ . '/../..' . '/tests/Unit/UserInteractTest.php',
         'TheSeer\\Tokenizer\\Exception' => __DIR__ . '/..' . '/theseer/tokenizer/src/Exception.php',
         'TheSeer\\Tokenizer\\NamespaceUri' => __DIR__ . '/..' . '/theseer/tokenizer/src/NamespaceUri.php',
         'TheSeer\\Tokenizer\\NamespaceUriException' => __DIR__ . '/..' . '/theseer/tokenizer/src/NamespaceUriException.php',

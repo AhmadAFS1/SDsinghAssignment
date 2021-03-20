@@ -33,17 +33,11 @@
 
                             <div class="col-md-6">
                                 @auth
-                                    @if(empty(auth()->user()->address1) || empty(auth()->user()->city) || empty(auth()->user()->state) || empty(auth()->user()->zipcode))
-                                    <p>Full address not given!
-                                    <br>
-                                    Using Texas Price ($5) as default</p>
-                                    @else
                                     <output name ="Address" value = "{{ auth()->user()->address1 }}">{{ auth()->user()->address1 }}
-                                    {{ auth()->user()->city}} ,
-                                    {{ auth()->user()->state}} 
+                                    {{ auth()->user()->city}},
+                                    {{ auth()->user()->state}}
                                     {{ auth()->user()->zipcode}}
                                     </output>
-                                    @endif
                                 @else
                                     <p>You are a guest!
                                     <br>
