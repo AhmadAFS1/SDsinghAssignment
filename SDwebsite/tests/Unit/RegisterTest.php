@@ -21,5 +21,6 @@ class RegisterTest extends TestCase
          */
         $this->assertTrue(True);
 
+        
     }
 }
