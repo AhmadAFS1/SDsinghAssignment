@@ -24,6 +24,9 @@ class UserInteractTest extends TestCase
         $response = $this->get('/profile');
         $response -> assertStatus(200);
 
+
+
+        
         $response = $this -> json('PUT', '/profile', ['name'=>"Larry Test", 'address1'=>"638 Glen Ridge Drive", 
         "city" => "Uniondale", "state"=> "NY", "zipcode" => "11553" ]);
         $response
@@ -42,6 +45,16 @@ class UserInteractTest extends TestCase
         $response = $this -> json('PUT', '/profile', ['name'=>55555, 'address1'=>"638 Glen Ridge Drive", 
         "city" => "Uniondale", "state"=> "NY", "zipcode" => "11553" ]);
         $response
-        ->assertStatus(302);
+        ->assertStatus(500);
+
+        $response = $this -> json('PUT', '/profile', ['name'=>"Larry Test", 'address1'=>52325, 
+        "city" => "Uniondale", "state"=> "NY", "zipcode" => "11553" ]);
+        $response
+        ->assertStatus(500);
+
+        $response = $this -> json('PUT', '/profile', ['name'=>"Larry Test", 'address1'=>52325, 
+        "city" => "Uniondale", "state"=> "NY", "zipcode" => 12345 ]);
+        $response
+        ->assertStatus(500);
     }
 }

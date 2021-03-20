@@ -8,8 +8,7 @@ use App\Models\QuoteHistory;
 
 class QuoteFormController extends Controller
 {
-    //
-    //$user =  auth()->user();
+    
     function addHistory(Request $req)
     {   
         $user =  auth()->user();
@@ -27,7 +26,7 @@ class QuoteFormController extends Controller
         
         if(empty($address) || empty($city) || empty($state) || empty($zip))
         {
-            $fulladdress = "Full address not given!\nUsing Texas Price ($5) as default";
+            $fulladdress = "Full address not given!" //"Full address not given!\nUsing Texas Price ($5) as default";
         }
         
         $QuoteHistory = new QuoteHistory;
