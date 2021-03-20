@@ -5,7 +5,6 @@ namespace Tests\Unit;
 use Tests\TestCase;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -19,7 +18,11 @@ class RegisterTest extends TestCase
          *
          * @return void
          */
+
         $this->assertTrue(True);
+
+
+        $response = $this->get('/home')->assertStatus(302);
 
         
     }

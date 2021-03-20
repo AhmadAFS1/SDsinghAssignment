@@ -4,6 +4,8 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 
+use Illuminate\Foundation\Testing\WithoutMiddleware;
+
 class SDwebsiteTest extends TestCase
 {
     /**
