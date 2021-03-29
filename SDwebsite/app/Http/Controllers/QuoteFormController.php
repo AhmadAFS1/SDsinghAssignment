@@ -23,17 +23,28 @@ class QuoteFormController extends Controller
         catch (exception $e) {
             $fulladdress = "No address given!\nUsing Texas Price ($5) as default";
         }
+
+        $QuoteHistory = new QuoteHistory;
         
         if(empty($address) || empty($city) || empty($state) || empty($zip))
         {
             $fulladdress = "Full address not given!"; //"Full address not given!\nUsing Texas Price ($5) as default";
+            $QuoteHistory -> Suggested_Price = 5.00;
+        }
+        else if($state == 'TX')
+        {
+            $QuoteHistory -> Suggested_Price = 5.00; //implement the price controller here
+        }
+        else
+        {
+            $QuoteHistory -> Suggested_Price = 6.00; //and here
         }
         
-        $QuoteHistory = new QuoteHistory;
         $QuoteHistory -> Gallons = $req -> Gallons;
         $QuoteHistory -> Address = $fulladdress;
         $QuoteHistory -> start = $req -> start;
-        $QuoteHistory -> Suggested_Price = 5 ; //$req -> Price;
+        $QuoteHistory -> user_id = $user -> id;
+        //$QuoteHistory -> Suggested_Price = 5 ; //$req -> Price;
         $QuoteHistory -> Due = ($req -> Gallons) * ($QuoteHistory -> Suggested_Price/*$req -> Price*/);
         $QuoteHistory -> save();
         response(['created'=>true], 201);

@@ -14,8 +14,11 @@ class FuelQuoteHistoryTable extends Migration
     public $timestamps = false;
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('quote_histories', function($t) {
             $t -> increments('id');
+            $t -> integer('user_id');
+            $t -> foreign('user_id')->references('id')->on('users');
             $t -> float('Gallons', 200)->nullable();
             $t -> string('Address', 500)->nullable();
             $t -> timestamp('start')->nullable();
@@ -32,6 +35,7 @@ class FuelQuoteHistoryTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::drop('quote_histories');
     }
 }

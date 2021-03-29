@@ -23,7 +23,7 @@
                                 <td>{{$item->Gallons }} gallon(s)</td>
                                 <td>{{$item->Address }}</td>
                                 <td>{{$item->start }}</td>
-                                <td>${{$item->Due }}</td>
+                                <td>${{$item->Suggested_Price }}</td>
                                 <td>${{$item->Due }}</td>
                             </tr>  
                             @endforeach

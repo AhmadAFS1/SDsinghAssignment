@@ -13,7 +13,8 @@ class QuoteHistoryController extends Controller
     function index()
     {
       //echo "Hello";
-      $collection = DB::select('select * from quote_histories');
+      $user =  auth()->user();
+      $collection = DB::select(sprintf('select * from quote_histories where user_id = %d', $user -> id));
       return view('fuelquotehistory', ['collection' => $collection]);
    //   $data = QuoteHistory::all();
    //   return view('fuelquotehistory', 'orders' => $data);   uncomment once DB is implemented
