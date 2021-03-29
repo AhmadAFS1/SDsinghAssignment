@@ -15,11 +15,10 @@ class PriceGeneratorTable extends Migration
     {
         Schema::create('prices', function (Blueprint $table) {
             $table->id();
-            $table->string('gallons');
+            $table->string('state');
+            $table->float('price');
             // Here we add a boolean() to check if user data has 'state' == 'Texas'
             // not sure how to do that
-
-            $table->timestamps();
         });
     }
 
