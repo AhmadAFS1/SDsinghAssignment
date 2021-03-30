@@ -10,8 +10,7 @@
                 <div class="card-header">{{ __('Fuel Quote') }}</div>
 
                 <div class="card-body">
-                    <form action="fuelquoteform" onoutput = "result.value = parseInt('5')  * parseInt(Gallons.value)" method="POST">
-                        <!--  oninput="result.value = parseInt('5')  * parseInt(Gallons.value)"--> 
+                    <form oninput="result.value = parseInt(Suggested_Price.value)*parseInt(Gallons.value)"   method="POST">
                         @csrf
 
                         <div class="form-group row">
@@ -96,10 +95,10 @@
                                 @auth
                                     
                                     @if((auth()->user()->state) == "TX")
-                                    <output name ="Suggested_Price" id = "Suggested_Price" value = 5 type="text" pattern = "[0-9]">5</output>
+                                    <output name ="Suggested_Price" id = "Suggested_Price" type="text" pattern = "[0-9]">5</output>
                                     
                                     @else
-                                    <output name ="Suggested_Price" id = "Suggested_Price" value = 8 type="text" pattern = "[0-9]">8</output> 
+                                    <output name ="Suggested_Price" id = "Suggested_Price" type="text" pattern = "[0-9]">8</output> 
                                        
                                     
                                     @endif
@@ -117,13 +116,6 @@
                                 @enderror
                             </div>
                         </div>
-
-
-                        <script>
-                           function getFinalPrice(){
-                            varTotal = document.getElementById("")
-                           } 
-                        </script>
 
                         <div class="form-group row">
                             <label for="Due" class="col-md-4 col-form-label text-md-right">{{ __('Total Amount Due') }}</label>
