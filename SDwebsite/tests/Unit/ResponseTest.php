@@ -16,7 +16,7 @@ class ResponseTest extends TestCase
      *
      * @return void
      */
-    use RefreshDatabase;
+    //use RefreshDatabase;
     public function test_database_as_user()
     {
         $user = User::factory()->make();
