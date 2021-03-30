@@ -32,7 +32,7 @@ class PriceController extends Controller
         else
         {
             $t_state = $state;
-            if($t_state != 'TX' or $t_state == NULL){
+            if($t_state != 'TX'){
                 $t_state = 'Others';
             }
             $Suggested_Price = DB::select(sprintf('select price from prices where state = \'%s\'', $t_state))[0]->price;
