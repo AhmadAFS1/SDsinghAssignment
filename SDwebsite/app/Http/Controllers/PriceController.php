@@ -37,6 +37,7 @@ class PriceController extends Controller
                 $t_state = 'Others';
             }
             $fetch_price_obj = DB::select(sprintf('select price from prices where state = \'%s\'', $t_state));
+            
             if($fetch_price_obj != NULL){
                 $Suggested_Price = DB::select(sprintf('select price from prices where state = \'%s\'', $t_state))[0]->price;
             }
@@ -51,6 +52,7 @@ class PriceController extends Controller
         //$Due = ($req -> Gallons) * ($Suggested_Price/*$req -> Price*/);
         
         $QuoteFormData = array($Suggested_Price, $Address);
+        Controller::console_log('Success!');
 
         return view('fuelquoteform', ['QuoteFormData' => $QuoteFormData]);
         //return view('fuelquoteform')->with('sugPr',$Suggested_Price);

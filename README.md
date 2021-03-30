@@ -1,10 +1,14 @@
 # SDsinghAssignment
 
 Commands:  
-php artisan migrate:reset                   // reset db  
-php artisan migrate                         // create db  
-php artisan db:seed                         // initialize data in all db  
-php artisan db:seed --class=UsersSeeder    // initialize Users table   
-php artisan db:seed --class=PricesSeeder    // initialize Prices table  
-php artisan migrate:fresh --seed            // Reinitialize database and fill with mock values  
-Output fake user accounts into fake_user_accs.txt
+php artisan migrate:reset                   <sub>// reset db</sub>  
+php artisan migrate                         <sub>// create db</sub>  
+php artisan db:seed                         <sub>// initialize data in all db</sub>  
+php artisan db:seed --class=UsersSeeder     <sub>// initialize Users table</sub>   
+php artisan db:seed --class=PricesSeeder    <sub>// initialize Prices table</sub>  
+php artisan migrate:fresh --seed            <sub>// Reinitialize database and fill with mock values</sub>  
+Output fake user accounts into fake_user_accs.txt  
+  
+TESTING:  
+php artisan migrate:fresh --seed             <sub>// to generate db for testing</sub>  
+vendor/bin/phpunit --coverage-html reports/  <sub>// for actual testing</sub>  

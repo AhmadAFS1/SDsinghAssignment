@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use DB;
 
 class ResponseTest extends TestCase
 {
@@ -17,22 +18,41 @@ class ResponseTest extends TestCase
      * @return void
      */
     //use RefreshDatabase;
-    public function test_database_as_user()
+
+    public function test_database_as_user_in_tx()
     {
-        $user = User::factory()->make();
+        $user1 = User::find(1);
 
-        $response = $this->actingAs($user);
+        $response = $this->actingAs($user1);
 
-        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>100, 
+        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>100, 'Price' => 2,
                                                             'start'=>"2021-10-10"]);
         $response
         ->assertStatus(302);
 
-        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>'abc', 
+        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>'abc', 'Price' => 2,
                                                             'start'=>"2021-10-10"]);
         $response
         ->assertStatus(500);
     }
+
+    public function test_database_as_user_out_tx()
+    {
+        $user2 = User::find(2);
+
+        $response = $this->actingAs($user2);
+
+        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>100, 'Price' => 3,
+                                                            'start'=>"2021-10-10"]);
+        $response
+        ->assertStatus(302);
+
+        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>'abc', 'Price' => 3,
+                                                            'start'=>"2021-10-10"]);
+        $response
+        ->assertStatus(500);
+    }
+
     public function test_database_as_guest()
     {
         $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>100, 
@@ -89,20 +109,30 @@ class ResponseTest extends TestCase
          *
          * @return void
          */
-        $response = $this -> json('POST', '/register', [
-            'name' => 'asd',
-            'email' => 'asdasd@asd',
-            'password' => 'testpass',
-            'password_confirmation' => 'testpass'])
-            ->assertStatus(201);
 
-        $response = $this->assertDatabaseHas('users', ['name' => 'asd']);
+        $exist_users = DB::table('users')->get();
+
+        if($exist_users == NULL){
+
+            $response = $this -> json('POST', '/register', [
+                'name' => 'asd',
+                'email' => 'asdasd@asd',
+                'password' => 'testpass',
+                'password_confirmation' => 'testpass'])
+                ->assertStatus(201);
+                
+            $response = $this->assertDatabaseHas('users', ['name' => 'asd']);
+            $user_email = 'asdasd@asd';
+        }
+        else{
+            $user_email = $exist_users[0] -> email;
+        }
 
         $response = $this -> json('POST', '/register', [
             'name' => 'asd2',
-            'email' => 'asdasd@asd',
+            'email' => $user_email,
             'password' => 'testpass',
             'password_confirmation' => 'testpass'])
-            ->assertStatus(302);
+            ->assertStatus(422);
     }
 }

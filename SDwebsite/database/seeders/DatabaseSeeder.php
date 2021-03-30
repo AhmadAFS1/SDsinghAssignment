@@ -33,7 +33,37 @@ class DatabaseSeeder extends Seeder
             $thing = array("Avenue", "Lane", "Road", "Boulevard", "Drive", "Street", "Ave", "Dr", "Court", "Rd", "Blvd", "Ln", "St");
             $random_state_key = 0;
             $pass_arr = array();
-            for ($i = 0; $i < 5; $i++) {
+
+            //User in TX
+            $random_thing_key = array_rand($thing, 1);
+            $random_password = Str::random(10);
+            array_push($pass_arr, $random_password);
+            DB::table('users')->insert([
+                'name' => Str::random(10),
+                'email' => Str::random(10).'@gmail.com',
+                'password' => Hash::make($random_password),
+                'address1' => rand(1, 1000).' '.Str::random(10).' '.$thing[$random_thing_key],
+                'city' => Str::random(10),
+                'state' => 'TX',
+                'zipcode' => rand(10000, 99999),
+            ]);
+
+            //User out TX
+            $random_thing_key = array_rand($thing, 1);
+            $random_password = Str::random(10);
+            array_push($pass_arr, $random_password);
+            DB::table('users')->insert([
+                'name' => Str::random(10),
+                'email' => Str::random(10).'@gmail.com',
+                'password' => Hash::make($random_password),
+                'address1' => rand(1, 1000).' '.Str::random(10).' '.$thing[$random_thing_key],
+                'city' => Str::random(10),
+                'state' => 'CA',
+                'zipcode' => rand(10000, 99999),
+            ]);
+            
+            //Random Users
+            for ($i = 0; $i < 3; $i++) {
                 $random_thing_key = array_rand($thing, 1);
                 $random_password = Str::random(10);
                 array_push($pass_arr, $random_password);
