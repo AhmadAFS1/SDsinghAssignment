@@ -34,11 +34,11 @@ class QuoteFormController extends Controller
         }
         else if($state == "TX")
         {
-            $QuoteHistory -> Suggested_Price = 5.00; //and here
+            $QuoteHistory -> Suggested_Price = 2.00; //and here
         }
         else
         {
-            $QuoteHistory -> Suggested_Price = 8.00; //and here
+            $QuoteHistory -> Suggested_Price = 3.00; //and here
         }
         
         $QuoteHistory -> Gallons = $req -> Gallons;
