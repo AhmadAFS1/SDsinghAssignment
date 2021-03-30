@@ -41,7 +41,7 @@
                                 @else
                                     <p>You are a guest!
                                     <br>
-                                    Using Out of Texas Price ($8) as default</p>
+                                    Using Out of Texas Price ($3) as default</p>
                                 @endauth
 
                                 

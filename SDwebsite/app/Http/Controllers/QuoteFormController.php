@@ -26,12 +26,11 @@ class QuoteFormController extends Controller
 
         $QuoteHistory = new QuoteHistory;
         
-<<<<<<< HEAD
-=======
+
         if(empty($address) || empty($city) || empty($state) || empty($zip))
         {
             $fulladdress = "Full address not given!"; //"Full address not given!\nUsing Texas Price ($5) as default";
-            $QuoteHistory -> Suggested_Price = 5.00; //implement the price controller here
+            $QuoteHistory -> Suggested_Price = 3.00; //implement the price controller here
                                                     //maybe put due in here and not using an if
         }
         else if($state == "TX")
@@ -43,7 +42,7 @@ class QuoteFormController extends Controller
             $QuoteHistory -> Suggested_Price = 3.00; //and here
         }
         
->>>>>>> 34fd5361a2d1a0dd3c361025b1cb3fc6aad8d68e
+
         $QuoteHistory -> Gallons = $req -> Gallons;
         $QuoteHistory -> Address = $fulladdress;
         $QuoteHistory -> start = $req -> start;
