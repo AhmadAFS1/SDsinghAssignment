@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\QuoteHistory;
+use DB;
 
 class PriceController extends Controller
 {
@@ -26,16 +27,15 @@ class PriceController extends Controller
         if(empty($address) || empty($city) || empty($state) || empty($zip))
         {
             $fulladdress = "Full address not given!"; //"Full address not given!\nUsing Texas Price ($5) as default";
-            $Suggested_Price = 8.00;//implement the price controller here
-                                                    //maybe put due in here and not using an if
-        }
-        else if($state == 'TX')
-        {
-            $Suggested_Price = 5.00; //and here
+            $Suggested_Price = 3.0;
         }
         else
         {
-            $Suggested_Price = 8.00; //and here
+            $t_state = $state;
+            if($t_state != 'TX' or $t_state == NULL){
+                $t_state = 'Others';
+            }
+            $Suggested_Price = DB::select(sprintf('select price from prices where state = \'%s\'', $t_state))[0]->price;
         }
 
         $Address = $fulladdress;

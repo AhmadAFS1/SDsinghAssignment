@@ -16,11 +16,11 @@ class PricesSeeder extends Seeder
     {
         DB::table('prices')->insert([
             'state' => 'TX',
-            'price' => 5.00,
+            'price' => 2.00,
         ]);
         DB::table('prices')->insert([
             'state' => 'Others',
-            'price' => 6.00,
+            'price' => 3.00,
         ]);
     }
 }
