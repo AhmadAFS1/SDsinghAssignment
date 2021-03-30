@@ -32,10 +32,18 @@ class PriceController extends Controller
         else
         {
             $t_state = $state;
-            if($t_state != 'TX'){
+
+            if($t_state != 'TX' or $t_state == NULL){
                 $t_state = 'Others';
             }
-            $Suggested_Price = DB::select(sprintf('select price from prices where state = \'%s\'', $t_state))[0]->price;
+            $fetch_price_obj = DB::select(sprintf('select price from prices where state = \'%s\'', $t_state));
+            if($fetch_price_obj != NULL){
+                $Suggested_Price = DB::select(sprintf('select price from prices where state = \'%s\'', $t_state))[0]->price;
+            }
+            else{
+                Controller::console_log('No data in prices table!');
+                $Suggested_Price = 3.0;
+            }
         }
 
         $Address = $fulladdress;

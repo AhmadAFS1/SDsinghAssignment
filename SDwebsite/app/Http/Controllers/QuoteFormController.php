@@ -26,26 +26,11 @@ class QuoteFormController extends Controller
 
         $QuoteHistory = new QuoteHistory;
         
-        if(empty($address) || empty($city) || empty($state) || empty($zip))
-        {
-            $fulladdress = "Full address not given!"; //"Full address not given!\nUsing Texas Price ($5) as default";
-            $QuoteHistory -> Suggested_Price = 5.00; //implement the price controller here
-                                                    //maybe put due in here and not using an if
-        }
-        else if($state == "TX")
-        {
-            $QuoteHistory -> Suggested_Price = 5.00; //and here
-        }
-        else
-        {
-            $QuoteHistory -> Suggested_Price = 8.00; //and here
-        }
-        
         $QuoteHistory -> Gallons = $req -> Gallons;
         $QuoteHistory -> Address = $fulladdress;
         $QuoteHistory -> start = $req -> start;
         $QuoteHistory -> user_id = $user -> id;
-        //$QuoteHistory -> Suggested_Price = 5 ; //$req -> Price;
+        $QuoteHistory -> Suggested_Price = $req -> Price;
         $QuoteHistory -> Due = ($req -> Gallons) * ($QuoteHistory -> Suggested_Price/*$req -> Price*/);
         $QuoteHistory -> save();
         //view('fuelquoteform', ['sugPr' => $QuoteHistory -> Suggested_Price]);

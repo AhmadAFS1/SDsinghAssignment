@@ -68,7 +68,7 @@
                             <label for="Price" class="col-md-4 col-form-label text-md-right">{{ __('Suggested Price/Gallon') }}</label>
 
                             <div class="col-md-6">
-                                <output name ="Price" id = "Price" type="text" pattern = "[0-9]">${{$QuoteFormData[0]}}</output>
+                                <input name ="Price" value="{{$QuoteFormData[0]}}" id = "Price" type="hidden" pattern = "[0-9]">${{$QuoteFormData[0]}}</output>
 
                             </div>
                         </div>
