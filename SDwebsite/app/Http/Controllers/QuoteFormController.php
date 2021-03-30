@@ -32,7 +32,7 @@ class QuoteFormController extends Controller
             $QuoteHistory -> Suggested_Price = 5.00; //implement the price controller here
                                                     //maybe put due in here and not using an if
         }
-        else if($state == 'TX')
+        else if($state == "TX")
         {
             $QuoteHistory -> Suggested_Price = 5.00; //and here
         }
