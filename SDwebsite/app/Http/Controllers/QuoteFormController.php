@@ -38,7 +38,7 @@ class QuoteFormController extends Controller
         }
         else
         {
-            $QuoteHistory -> Suggested_Price = 6.00; //and here
+            $QuoteHistory -> Suggested_Price = 8.00; //and here
         }
         
         $QuoteHistory -> Gallons = $req -> Gallons;
@@ -48,6 +48,7 @@ class QuoteFormController extends Controller
         //$QuoteHistory -> Suggested_Price = 5 ; //$req -> Price;
         $QuoteHistory -> Due = ($req -> Gallons) * ($QuoteHistory -> Suggested_Price/*$req -> Price*/);
         $QuoteHistory -> save();
+        //view('fuelquoteform', ['sugPr' => $QuoteHistory -> Suggested_Price]);
         response(['created'=>true], 201);
         return redirect('home');
     }

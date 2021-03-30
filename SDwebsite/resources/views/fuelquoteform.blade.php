@@ -10,15 +10,14 @@
                 <div class="card-header">{{ __('Fuel Quote') }}</div>
 
                 <div class="card-body">
-                    <form action="fuelquoteform" oninput="result.value = parseInt('5')  
-                * parseInt(Gallons.value)" method="POST">
+                    <form action="fuelquoteform" oninput="result.value = {{$QuoteFormData[0]}} * parseInt(Gallons.value)" method="POST">
                         @csrf
 
                         <div class="form-group row">
                             <label for="Gallons" class="col-md-4 col-form-label text-md-right">{{ __('Gallons Requested') }}</label>
 
                             <div class="col-md-6">
-                                <input name ="Gallons" id = "Gallons" type="number" pattern = "[0-9]">
+                                <input name ="Gallons" id = "Gallons" type="number" pattern = "[0-9]" >
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -35,39 +34,17 @@
                                 @auth
 
                                     
-                                    @if(empty(auth()->user()->address1) || empty(auth()->user()->city) || empty(auth()->user()->zipcode))
-                                        <output name ="Address" value = "{{ auth()->user()->address1 }}">
-                                        
-                                            <p>Full Address not given!
-                                            <br>
-                                            Using Texas Price ($5) as default
-                                            </p>
-                                        </output>
-                                    
-                                     @else
-                                        
-                                        <output name = "Address" value = "{{ auth()->user()->address1 }}">
-                                            {{ auth()->user()->address1 }}
-                                            {{ auth()->user()->city}} ,
-                                            {{ auth()->user()->state}} 
-                                            {{ auth()->user()->zipcode}}
-                                        </output>
-                                    
-                                     @endif
+                                    {{$QuoteFormData[1]}}
                                         
                                         
                                     
                                 @else
                                     <p>You are a guest!
                                     <br>
-                                    Using Texas Price ($5) as default</p>
+                                    Using Out of Texas Price ($8) as default</p>
                                 @endauth
 
-                                @error('Address')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                
                             </div>
                         </div>
                         <!-- INSERT DATE PICKER HERE -->
@@ -91,13 +68,8 @@
                             <label for="Price" class="col-md-4 col-form-label text-md-right">{{ __('Suggested Price/Gallon') }}</label>
 
                             <div class="col-md-6">
-                                <output name ="Price" id = "Price" type="text" pattern = "[0-9]">5</output>
+                                <output name ="Price" id = "Price" type="text" pattern = "[0-9]">${{$QuoteFormData[0]}}</output>
 
-                                @error('Address')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
 
@@ -105,13 +77,7 @@
                             <label for="Due" class="col-md-4 col-form-label text-md-right">{{ __('Total Amount Due') }}</label>
 
                             <div class="col-md-6">
-                                <output name ="result" ></output>
-
-                                @error('Number')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                $<output name = result></output>
                             </div>
                         </div>
 
