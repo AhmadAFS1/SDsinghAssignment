@@ -43,8 +43,12 @@ Route::post('/fuelquoteform', [PriceController::class, 'viewPrice']);
 
 Route::post('/fuelquoteform', [QuoteFormController::class,'addHistory']);
 
-Route::get('/fuelquoteform', [PriceController::class, 'viewPrice']);
 
+Route::get('/fuelquoteform', [PriceController::class, 'viewPrice']);
+<<<<<<< HEAD
+
+=======
+>>>>>>> 34fd5361a2d1a0dd3c361025b1cb3fc6aad8d68e
 
 Route::get('/fuelquotehistory', [QuoteHistoryController::class, 'index']);
 
