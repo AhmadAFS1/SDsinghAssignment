@@ -10,8 +10,8 @@
                 <div class="card-header">{{ __('Fuel Quote') }}</div>
 
                 <div class="card-body">
-                    <form action="fuelquoteform" oninput="result.value = parseInt('5')  
-                * parseInt(Gallons.value)" method="POST">
+                    <form action="fuelquoteform" onoutput = "result.value = parseInt('5')  * parseInt(Gallons.value)" method="POST">
+                        <!--  oninput="result.value = parseInt('5')  * parseInt(Gallons.value)"--> 
                         @csrf
 
                         <div class="form-group row">
@@ -91,15 +91,39 @@
                             <label for="Price" class="col-md-4 col-form-label text-md-right">{{ __('Suggested Price/Gallon') }}</label>
 
                             <div class="col-md-6">
-                                <output name ="Price" id = "Price" type="text" pattern = "[0-9]">5</output>
 
-                                @error('Address')
+
+                                @auth
+                                    
+                                    @if((auth()->user()->state) == "TX")
+                                    <output name ="Suggested_Price" id = "Suggested_Price" value = 5 type="text" pattern = "[0-9]">5</output>
+                                    
+                                    @else
+                                    <output name ="Suggested_Price" id = "Suggested_Price" value = 8 type="text" pattern = "[0-9]">8</output> 
+                                       
+                                    
+                                    @endif
+                                    
+                                   
+                                    
+                                
+                                @endauth
+                               
+
+                                @error('Suggested_Price')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
+
+
+                        <script>
+                           function getFinalPrice(){
+                            varTotal = document.getElementById("")
+                           } 
+                        </script>
 
                         <div class="form-group row">
                             <label for="Due" class="col-md-4 col-form-label text-md-right">{{ __('Total Amount Due') }}</label>
