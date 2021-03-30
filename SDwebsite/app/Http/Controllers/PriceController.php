@@ -12,7 +12,7 @@ class PriceController extends Controller
     function viewPrice(Request $req)
     {
         $user =  auth()->user();
-        try 
+        if($user != NULL)
         {
             $address = ($user->address1);
             $city = ($user->city);
@@ -20,7 +20,7 @@ class PriceController extends Controller
             $zip = ($user->zipcode);
             $fulladdress = $address." ".$city.", ".$state." ".$zip;
         }
-        catch (exception $e) {
+        else {
             $fulladdress = "No address given!\nUsing Texas Price ($5) as default";
         }
 
