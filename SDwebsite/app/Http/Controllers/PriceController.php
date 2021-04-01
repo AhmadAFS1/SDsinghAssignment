@@ -21,12 +21,12 @@ class PriceController extends Controller
             $fulladdress = $address." ".$city.", ".$state." ".$zip;
         }
         else {
-            $fulladdress = "No address given!\nUsing Texas Price ($5) as default";
+            $fulladdress = "No address given!\nUsing Texas Price ($2) as default";
         }
 
         if(empty($address) || empty($city) || empty($state) || empty($zip))
         {
-            $fulladdress = "Full address not given!"; //"Full address not given!\nUsing Texas Price ($5) as default";
+            $fulladdress = "Full address not given!"; 
             $Suggested_Price = 3.0;
         }
         else
@@ -47,14 +47,11 @@ class PriceController extends Controller
             }
         }
 
-        $Address = $fulladdress;
-        //$QuoteHistory -> Suggested_Price = 5 ; //$req -> Price;
-        //$Due = ($req -> Gallons) * ($Suggested_Price/*$req -> Price*/);
-        
+        $Address = $fulladdress;        
         $QuoteFormData = array($Suggested_Price, $Address);
         Controller::console_log('Success!');
 
         return view('fuelquoteform', ['QuoteFormData' => $QuoteFormData]);
-        //return view('fuelquoteform')->with('sugPr',$Suggested_Price);
+        
     }
 }

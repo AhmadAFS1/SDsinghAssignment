@@ -21,7 +21,6 @@ class ProfilesController extends Controller
     	 	'state' => $request->state,
     	 	'zipcode' => $request->zipcode,
     	 ]);
-    	 //session()->flash('success', 'User updated successfully'); 
     	 return redirect()->route('home');; 
     }
 }

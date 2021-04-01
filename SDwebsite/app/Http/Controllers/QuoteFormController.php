@@ -21,7 +21,7 @@ class QuoteFormController extends Controller
             $fulladdress = $address." ".$city.", ".$state." ".$zip;
         }
         else {
-            $fulladdress = "No address given!\nUsing Texas Price ($5) as default";
+            $fulladdress = "No address given!\nUsing Texas Price ($2) as default";
         }
 
         $QuoteHistory = new QuoteHistory;
@@ -31,9 +31,8 @@ class QuoteFormController extends Controller
         $QuoteHistory -> start = $req -> start;
         $QuoteHistory -> user_id = $user -> id;
         $QuoteHistory -> Suggested_Price = $req -> Price;
-        $QuoteHistory -> Due = ($req -> Gallons) * ($QuoteHistory -> Suggested_Price/*$req -> Price*/);
+        $QuoteHistory -> Due = ($req -> Gallons) * ($QuoteHistory -> Suggested_Price);
         $QuoteHistory -> save();
-        //view('fuelquoteform', ['sugPr' => $QuoteHistory -> Suggested_Price]);
         response(['created'=>true], 201);
         return redirect('home');
     }

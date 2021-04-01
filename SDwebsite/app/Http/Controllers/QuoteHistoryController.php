@@ -12,12 +12,9 @@ class QuoteHistoryController extends Controller
 {
     function index()
     {
-      //echo "Hello";
       $user =  auth()->user();
       $collection = DB::select(sprintf('select * from quote_histories where user_id = %d order by start asc', $user -> id));
       return view('fuelquotehistory', ['collection' => $collection]);
-   //   $data = QuoteHistory::all();
-   //   return view('fuelquotehistory', 'orders' => $data);   uncomment once DB is implemented
-      //return view('fuelquotehistory');
+  
     }
 }
