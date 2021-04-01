@@ -17,8 +17,6 @@ class PriceGeneratorTable extends Migration
             $table->id();
             $table->string('state');
             $table->float('price');
-            // Here we add a boolean() to check if user data has 'state' == 'Texas'
-            // not sure how to do that
         });
     }
 
