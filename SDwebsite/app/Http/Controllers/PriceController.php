@@ -50,6 +50,8 @@ class PriceController extends Controller
         int CompanyProfit = 0.10;
         
         int ResultingPrice = (locationFactor - HistoryFactor + GallonsRequestedFactor)*basePay
+
+        return ResultingPrice;
         }
         */
 
