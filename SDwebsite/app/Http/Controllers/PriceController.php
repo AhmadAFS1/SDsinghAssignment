@@ -21,6 +21,10 @@ class PriceController extends Controller
             $fulladdress = $address." ".$city.", ".$state." ".$zip;
         }
         else {
+            $address = NULL;
+            $city = NULL;
+            $state = NULL;
+            $zip = NULL;
             $fulladdress = "No address given!\nUsing other location factor (4%) as default";
         }
 
@@ -36,8 +40,13 @@ class PriceController extends Controller
         } //self-explanatory 
         
         //find whether the user's id is even in the  FuelQuoteHistory table at all
-        $fetch_uh_obj = DB::select(sprintf('select * from quote_histories where user_id = \'%s\'', $user->id));
-     
+        if($user != NULL){
+            $fetch_uh_obj = DB::select(sprintf('select * from quote_histories where user_id = \'%s\'', $user->id));
+        }
+        else{
+            $fetch_uh_obj = NULL;
+        }
+
         if ($fetch_uh_obj != NULL) {
             $HistoryFactor = 0.01;
         }
@@ -54,22 +63,17 @@ class PriceController extends Controller
 
         $CompanyProfit = 0.10;
         
-        
-        //$Margin = ((.02 - .01 + .02 + .1) * 1.50);
-        // = 1.695;
-        $Margin = ($locationFactor - $HistoryFactor + 0 + $CompanyProfit); 
-        $ResultingPrice =  $Margin ; //This is actually the Margin
-        
+        $ResultingPrice = ($locationFactor - $HistoryFactor + $CompanyProfit);
         // We do GALLON REQUEST FACTOR on the http page
         
         if(empty($address) || empty($city) || empty($state) || empty($zip))
         {
             $fulladdress = "Full address not given!"; 
-            $Suggested_Price = $ResultingPrice; //outputting margin instead
+            $Suggested_Price = $ResultingPrice;
         }
         else
         {   
-            $Suggested_Price = $ResultingPrice; //outputting margin instead
+            $Suggested_Price = $ResultingPrice;
         }
         
         $Address = $fulladdress;        

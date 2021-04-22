@@ -12,9 +12,9 @@
                 <div class="card-body">
                     <form action="fuelquoteform" oninput="if(Gallons.value >= 1000){gf = 0.02;}else{gf = 0.03;} 
                                                            
-                                                            O_Price.value = (((( {{$QuoteFormData[0]}} + 0.02 )*1.50)+1.50 ) ); 
+                                                            O_Price.value = Math.round(((( {{$QuoteFormData[0]}} + gf )*1.50)+1.50 ) *1000)/1000; 
                                                            
-                                                            result.value = (O_Price.value * Gallons.value); 
+                                                            result.value = Math.round((O_Price.value * Gallons.value)*100)/100; 
                                                             Price.value = O_Price.value" method="POST">
                         @csrf
                         <!-- "if(Gallons.value >= 1000){gf = 0.2;}else{gf = 0.3;} 
@@ -50,7 +50,7 @@
                                 @else
                                     <p>You are a guest!
                                     <br>
-                                    Using Out of Texas Price ($3)</p>
+                                    No discount for you!</p>
                                 @endauth
 
                                 
