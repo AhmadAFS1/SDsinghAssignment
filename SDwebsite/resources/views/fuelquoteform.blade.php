@@ -10,7 +10,10 @@
                 <div class="card-header">{{ __('Fuel Quote') }}</div>
 
                 <div class="card-body">
-                    <form action="fuelquoteform" oninput="result.value = {{$QuoteFormData[0]}} * parseInt(Gallons.value)" method="POST">
+                    <form action="fuelquoteform" oninput="if(Gallons.value >= 1000){gf = 0.2;}else{gf = 0.3;} 
+                                                            O_Price.value = Math.round(({{$QuoteFormData[0]}} + gf * 1.5) * 100)/100; 
+                                                            result.value = Math.round(O_Price.value * Gallons.value * 100)/100; 
+                                                            Price.value = O_Price.value" method="POST">
                         @csrf
 
                         <div class="form-group row">
@@ -68,8 +71,8 @@
                             <label for="Price" class="col-md-4 col-form-label text-md-right">{{ __('Suggested Price/Gallon') }}</label>
 
                             <div class="col-md-6">
-                                <input name ="Price" value="{{$QuoteFormData[0]}}" id = "Price" type="hidden" pattern = "[0-9]">${{$QuoteFormData[0]}}</output>
-
+                                <input name ="Price" id = "Price" type="hidden" pattern = "[0-9]">
+                                $<output name ="O_Price" id = "O_Price"></output>
                             </div>
                         </div>
 

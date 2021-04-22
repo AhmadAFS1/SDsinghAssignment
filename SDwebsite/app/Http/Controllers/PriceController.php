@@ -21,68 +21,52 @@ class PriceController extends Controller
             $fulladdress = $address." ".$city.", ".$state." ".$zip;
         }
         else {
-            $fulladdress = "No address given!\nUsing Texas Price ($2) as default";
+            $fulladdress = "No address given!\nUsing other location factor (4%) as default";
         }
 
+        //Final Assignment thing 
         
-        function getTheActualPrice(){
+        $basePay = 1.50; //given
         
-       
-
-
-        int basePay = $1.50; //given
-
-        $t_state = $state;
-        if($t_state != 'TX' or $t_state == NULL){
-                $t_state = 'Others';
-        }else{int locationFactor = 0.02;} //self-explanatory 
+        if($state != 'TX'){
+            $locationFactor = 0.04;
+        }
+        else{
+            $locationFactor = 0.02;
+        } //self-explanatory 
         
         //find whether the user's id is even in the  FuelQuoteHistory table at all
-
-        if (DB::table('QuoteHistory')->where('user_id', $user)->exists()) {
-            int HistoryFactor = 0.01;
+        $fetch_uh_obj = DB::select(sprintf('select * from quote_histories where user_id = \'%s\'', $user->id));
+     
+        if ($fetch_uh_obj != NULL) {
+            $HistoryFactor = 0.01;
         }
-        if (DB::table('QuoteHistory')->where('user_id', $user)->doesntExist()) {
-            int HistoryFactor = 0;
+        else{
+            $HistoryFactor = 0;
         }
 
-        //if(Gallons > 1000)  <- idk how to do this one in this controller
-        int GallonsRequestedFactor = 0; 
+        if($req->Gallons >= 1000){
+            $GallonsRequestedFactor = 0.02;
+        }  //<- idk how to do this one in this controller
+        else{
+            $GallonsRequestedFactor = 0.03;
+        }
 
-
-        int CompanyProfit = 0.10;
+        $CompanyProfit = 0.10;
         
-        int ResultingPrice = (locationFactor - HistoryFactor + GallonsRequestedFactor)*basePay
-
-        return ResultingPrice;
-        }
+        $ResultingPrice = ($locationFactor - $HistoryFactor + $CompanyProfit + 1) * $basePay;
+        // We do GALLON REQUEST FACTOR on the http page
         
-
-
         if(empty($address) || empty($city) || empty($state) || empty($zip))
         {
             $fulladdress = "Full address not given!"; 
-            $Suggested_Price = 3.0;
+            $Suggested_Price = $ResultingPrice;
         }
         else
         {   
-            /*
-            $t_state = $state;
-
-            if($t_state != 'TX' or $t_state == NULL){
-                $t_state = 'Others';
-            }
-            $fetch_price_obj = DB::select(sprintf('select price from prices where state = \'%s\'', $t_state));
-            
-            if($fetch_price_obj != NULL){
-                $Suggested_Price = DB::select(sprintf('select price from prices where state = \'%s\'', $t_state))[0]->price;
-            }
-            else{
-                Controller::console_log('No data in prices table!');
-                $Suggested_Price = 3.0;
-            }*/
+            $Suggested_Price = $ResultingPrice;
         }
-
+        
         $Address = $fulladdress;        
         $QuoteFormData = array($Suggested_Price, $Address);
         Controller::console_log('Success!');
