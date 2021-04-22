@@ -10,11 +10,17 @@
                 <div class="card-header">{{ __('Fuel Quote') }}</div>
 
                 <div class="card-body">
-                    <form action="fuelquoteform" oninput="if(Gallons.value >= 1000){gf = 0.2;}else{gf = 0.3;} 
-                                                            O_Price.value = Math.round(({{$QuoteFormData[0]}} + gf * 1.5) * 100)/100; 
-                                                            result.value = Math.round(O_Price.value * Gallons.value * 100)/100; 
+                    <form action="fuelquoteform" oninput="if(Gallons.value >= 1000){gf = 0.02;}else{gf = 0.03;} 
+                                                           
+                                                            O_Price.value = (((( {{$QuoteFormData[0]}} + 0.02 )*1.50)+1.50 ) ); 
+                                                           
+                                                            result.value = (O_Price.value * Gallons.value); 
                                                             Price.value = O_Price.value" method="POST">
                         @csrf
+                        <!-- "if(Gallons.value >= 1000){gf = 0.2;}else{gf = 0.3;} 
+                                                            O_Price.value = (({{$QuoteFormData[0]}} + gf * 1.5) * 100)/100; 
+                                                            result.value = (O_Price.value * Gallons.value * 100)/100; 
+                                                            Price.value = O_Price.value"-->
 
                         <div class="form-group row">
                             <label for="Gallons" class="col-md-4 col-form-label text-md-right">{{ __('Gallons Requested') }}</label>

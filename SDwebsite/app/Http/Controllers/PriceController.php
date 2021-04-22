@@ -54,17 +54,22 @@ class PriceController extends Controller
 
         $CompanyProfit = 0.10;
         
-        $ResultingPrice = ($locationFactor - $HistoryFactor + $CompanyProfit + 1) * $basePay;
+        
+        //$Margin = ((.02 - .01 + .02 + .1) * 1.50);
+        // = 1.695;
+        $Margin = ($locationFactor - $HistoryFactor + 0 + $CompanyProfit); 
+        $ResultingPrice =  $Margin ; //This is actually the Margin
+        
         // We do GALLON REQUEST FACTOR on the http page
         
         if(empty($address) || empty($city) || empty($state) || empty($zip))
         {
             $fulladdress = "Full address not given!"; 
-            $Suggested_Price = $ResultingPrice;
+            $Suggested_Price = $ResultingPrice; //outputting margin instead
         }
         else
         {   
-            $Suggested_Price = $ResultingPrice;
+            $Suggested_Price = $ResultingPrice; //outputting margin instead
         }
         
         $Address = $fulladdress;        
