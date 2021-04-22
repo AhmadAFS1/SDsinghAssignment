@@ -20,11 +20,11 @@ class DatabaseSeeder extends Seeder
         if(DB::table('prices')->count() == 0){
             DB::table('prices')->insert([
                 'state' => 'TX',
-                'price' => 2.00,
+                'price' => 1.50,
             ]);
             DB::table('prices')->insert([
                 'state' => 'Others',
-                'price' => 3.00,
+                'price' => 1.50,
             ]);
         }
 
