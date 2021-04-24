@@ -24,23 +24,17 @@ class QuoteFormController extends Controller
             $fulladdress = "No address given!\nUsing Texas Price ($2) as default";
         }
 
-        if($req -> Gallons != NULL)
-        {
 
-            $QuoteHistory = new QuoteHistory;
+        $QuoteHistory = new QuoteHistory;
         
-            $QuoteHistory -> Gallons = $req -> Gallons;
-            $QuoteHistory -> Address = $fulladdress;
-            $QuoteHistory -> start = $req -> start;
-            $QuoteHistory -> user_id = $user -> id;
-            $QuoteHistory -> Suggested_Price = $req -> Price;
-            $QuoteHistory -> Due = ($req -> Gallons) * ($QuoteHistory -> Suggested_Price);
-            $QuoteHistory -> save();
-            response(['created'=>true], 201);
-            return redirect('home');
-        }
-        else {
-            return redirect('home');
-        }
+        $QuoteHistory -> Gallons = $req -> Gallons;
+        $QuoteHistory -> Address = $fulladdress;
+        $QuoteHistory -> start = $req -> start;
+        $QuoteHistory -> user_id = $user -> id;
+        $QuoteHistory -> Suggested_Price = $req -> Price;
+        $QuoteHistory -> Due = ($req -> Gallons) * ($QuoteHistory -> Suggested_Price);
+        $QuoteHistory -> save();
+        response(['created'=>true], 201);
+        return redirect('home');
     }
 }
