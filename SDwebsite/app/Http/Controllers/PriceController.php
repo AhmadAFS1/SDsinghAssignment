@@ -39,14 +39,24 @@ class PriceController extends Controller
             $locationFactor = 0.02;
         } //self-explanatory 
         
-        //find whether the user's id is even in the  FuelQuoteHistory table at all
+
+        if (DB::table('quote_histories')->where('user_id', $user->id )->exists())
+        {
+            $fetch_uh_obj = DB::select(sprintf('select * from quote_histories where user_id = \'%s\'', $user->id));
+        }
+        else {
+            $fetch_uh_obj = NULL;
+        }
+
+
+/*    //find whether the user's id is even in the  FuelQuoteHistory table at all
         if($user != NULL){
             $fetch_uh_obj = DB::select(sprintf('select * from quote_histories where user_id = \'%s\'', $user->id));
         }
         else{
             $fetch_uh_obj = NULL;
         }
-
+*/
         if ($fetch_uh_obj != NULL) {
             $HistoryFactor = 0.01;
         }

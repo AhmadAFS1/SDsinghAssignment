@@ -24,6 +24,7 @@ class QuoteFormController extends Controller
             $fulladdress = "No address given!\nUsing Texas Price ($2) as default";
         }
 
+
         $QuoteHistory = new QuoteHistory;
         
         $QuoteHistory -> Gallons = $req -> Gallons;
