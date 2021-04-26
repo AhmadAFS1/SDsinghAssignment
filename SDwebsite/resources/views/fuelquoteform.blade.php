@@ -26,7 +26,7 @@
                             <label for="Gallons" class="col-md-4 col-form-label text-md-right">{{ __('Gallons Requested') }}</label>
 
                             <div class="col-md-6">
-                                <input name ="Gallons" id = "Gallons" type="number" pattern = "[0-9]" >
+                                <input name ="Gallons" id = "Gallons" type="number" pattern = "[0-9]" required>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -61,7 +61,7 @@
                             <label for="start" class="col-md-4 col-form-label text-md-right">{{ __('Delivery date') }}</label>
                         
                             <div class="col-md-6">
-                                <input type="date" name ="start" name="trip-start" value="2021-01-2" min="2021-01-01" max="2021-12-31">
+                                <input type="date" name ="start" name="trip-start" value="2021-01-2" min="2021-01-01" max="2021-12-31" required>
                                 
                                 @error('Date')
                                     <span class="invalid-feedback" role="alert">
