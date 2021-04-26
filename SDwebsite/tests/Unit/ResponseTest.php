@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Testing\Assert as PHPUnit;
+use Illuminate\Support\Str;
 use DB;
 
 class ResponseTest extends TestCase
@@ -24,16 +26,35 @@ class ResponseTest extends TestCase
         $user1 = User::find(1);
 
         $response = $this->actingAs($user1);
+        //test bad input
+        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>'abc',
+                                                            'start'=>'abc']);
+        $response
+        ->assertStatus(500);
 
-        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>100, 'Price' => 2,
+        //test appropriate input
+        //request < 1000 Gallons first time
+        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>100,
                                                             'start'=>"2021-10-10"]);
         $response
         ->assertStatus(302);
-
-        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>'abc', 'Price' => 2,
+        //request < 1000 Gallons with history
+        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>100,
                                                             'start'=>"2021-10-10"]);
         $response
-        ->assertStatus(500);
+        ->assertStatus(302);
+        //request 1000 Gallons with history
+        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>1000,
+                                                            'start'=>"2021-10-10"]);
+        $response
+        ->assertStatus(302);
+        //Check if all Suggested_Price and Due in db match up
+        $SP = DB::table('quote_histories')->where('user_id', $user1->id)->get("Suggested_Price");
+        $Due = DB::table('quote_histories')->where('user_id', $user1->id)->get("Due");
+        PHPUnit::assertTrue($SP[0]->Suggested_Price == 1.725 and $Due[0]->Due == 172.5);
+        PHPUnit::assertTrue($SP[1]->Suggested_Price == 1.71 and $Due[1]->Due == 171.0);
+        PHPUnit::assertTrue($SP[2]->Suggested_Price == 1.695 and $Due[2]->Due == 1695.0);
+        
     }
 
     public function test_database_as_user_out_tx()
@@ -41,16 +62,34 @@ class ResponseTest extends TestCase
         $user2 = User::find(2);
 
         $response = $this->actingAs($user2);
+        //test bad input
+        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>'abc',
+                                                            'start'=>'abc']);
+        $response
+        ->assertStatus(500);
 
-        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>100, 'Price' => 3,
+        //test appropriate input
+        //request < 1000 Gallons first time
+        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>100,
                                                             'start'=>"2021-10-10"]);
         $response
         ->assertStatus(302);
-
-        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>'abc', 'Price' => 3,
+        //request < 1000 Gallons with history
+        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>100,
                                                             'start'=>"2021-10-10"]);
         $response
-        ->assertStatus(500);
+        ->assertStatus(302);
+        //request 1000 Gallons with history
+        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>1000,
+                                                            'start'=>"2021-10-10"]);
+        $response
+        ->assertStatus(302);
+        //Check if all Suggested_Price and Due in db match up
+        $SP = DB::table('quote_histories')->where('user_id', $user2->id)->get("Suggested_Price");
+        $Due = DB::table('quote_histories')->where('user_id', $user2->id)->get("Due");
+        PHPUnit::assertTrue($SP[0]->Suggested_Price == 1.755 and $Due[0]->Due == 175.5);
+        PHPUnit::assertTrue($SP[1]->Suggested_Price == 1.74 and $Due[1]->Due == 174.0);
+        PHPUnit::assertTrue($SP[2]->Suggested_Price == 1.725 and $Due[2]->Due == 1725.0);
     }
 
     public function test_database_as_guest()
@@ -68,15 +107,50 @@ class ResponseTest extends TestCase
          *
          * @return void
          */
-
+        $name = Str::random(10);
         $response = $this -> json('POST', '/register', [
-            'name' => 'asd',
-            'email' => 'asdasd@asd',
+            'name' => $name,
+            'email' => Str::random(10).'@gmail.com',
             'password' => 'testpass',
             'password_confirmation' => 'testpass'])
             ->assertStatus(201);
 
-        $response = $this->assertDatabaseHas('users', ['name' => 'asd']);
+        $response = $this->assertDatabaseHas('users', ['name' => $name]);
+    }
+
+    public function test_database_as_user_with_no_address()
+    {
+        $user3 = User::find(8);
+
+        $response = $this->actingAs($user3);
+        //test bad input
+        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>'abc',
+                                                            'start'=>'abc']);
+        $response
+        ->assertStatus(500);
+
+        //test appropriate input
+        //request < 1000 Gallons first time
+        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>100,
+                                                            'start'=>"2021-10-10"]);
+        $response
+        ->assertStatus(302);
+        //request < 1000 Gallons with history
+        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>100,
+                                                            'start'=>"2021-10-10"]);
+        $response
+        ->assertStatus(302);
+        //request 1000 Gallons with history
+        $response = $this -> json('POST', '/fuelquoteform', ['Gallons'=>1000,
+                                                            'start'=>"2021-10-10"]);
+        $response
+        ->assertStatus(302);
+        //Check if all Suggested_Price and Due in db match up
+        $SP = DB::table('quote_histories')->where('user_id', $user3->id)->get("Suggested_Price");
+        $Due = DB::table('quote_histories')->where('user_id', $user3->id)->get("Due");
+        PHPUnit::assertTrue($SP[0]->Suggested_Price == 1.755 and $Due[0]->Due == 175.5);
+        PHPUnit::assertTrue($SP[1]->Suggested_Price == 1.74 and $Due[1]->Due == 174.0);
+        PHPUnit::assertTrue($SP[2]->Suggested_Price == 1.725 and $Due[2]->Due == 1725.0);
     }
 
     public function test_register_with_wrong_confirm_password()

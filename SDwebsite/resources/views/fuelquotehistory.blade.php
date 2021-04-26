@@ -12,11 +12,11 @@
 
                         <table class = "card body-table">
                             <tr>
-                                <td>        Gallons       </td>
-                                <td>        Address       </td>
-                                <td>     Delivery Date    </td>
-                                <td>    Suggested Price   </td>
-                                <td>   Total Amount Due   </td>
+                                <td style="width: 180px">        Gallons       </td>
+                                <td style="width: 300px">        Address       </td>
+                                <td style="width: 160px">     Delivery Date    </td>
+                                <td style="width: 170px">    Suggested Price   </td>
+                                <td style="width: 180px">   Total Amount Due   </td>
                             </tr>
                             @foreach ($collection as $item)
                             <tr>

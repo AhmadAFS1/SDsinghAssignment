@@ -38,5 +38,7 @@ class UserInteractTest extends TestCase
         "city" => 1234, "state"=> "NY", "zipcode" => "11553" ]);
         $response
         ->assertStatus(302);
+
+        
     }
 }

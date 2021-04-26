@@ -18,6 +18,7 @@ class PriceController extends Controller
             $city = ($user->city);
             $state = ($user->state);
             $zip = ($user->zipcode);
+            $user_id = ($user->id);
             $fulladdress = $address." ".$city.", ".$state." ".$zip;
         }
         else {
@@ -25,6 +26,7 @@ class PriceController extends Controller
             $city = NULL;
             $state = NULL;
             $zip = NULL;
+            $user_id = NULL;
             $fulladdress = "No address given!\nUsing other location factor (4%) as default";
         }
 
@@ -39,14 +41,15 @@ class PriceController extends Controller
             $locationFactor = 0.02;
         } //self-explanatory 
         
-
-        if (DB::table('quote_histories')->where('user_id', $user->id )->exists())
+        
+        if ($user != NULL && DB::table('quote_histories')->where('user_id', $user->id )->exists())
         {
             $fetch_uh_obj = DB::select(sprintf('select * from quote_histories where user_id = \'%s\'', $user->id));
         }
         else {
             $fetch_uh_obj = NULL;
         }
+        
 
 
 /*    //find whether the user's id is even in the  FuelQuoteHistory table at all
@@ -63,13 +66,14 @@ class PriceController extends Controller
         else{
             $HistoryFactor = 0;
         }
-
+        /*
         if($req->Gallons >= 1000){
             $GallonsRequestedFactor = 0.02;
         }  //<- idk how to do this one in this controller
         else{
             $GallonsRequestedFactor = 0.03;
         }
+        */
 
         $CompanyProfit = 0.10;
         

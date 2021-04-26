@@ -34,34 +34,35 @@ class DatabaseSeeder extends Seeder
             $random_state_key = 0;
             $pass_arr = array();
 
-            //User in TX
-            $random_thing_key = array_rand($thing, 1);
-            $random_password = Str::random(10);
-            array_push($pass_arr, $random_password);
-            DB::table('users')->insert([
-                'name' => Str::random(10),
-                'email' => Str::random(10).'@gmail.com',
-                'password' => Hash::make($random_password),
-                'address1' => rand(1, 1000).' '.Str::random(10).' '.$thing[$random_thing_key],
-                'city' => Str::random(10),
-                'state' => 'TX',
-                'zipcode' => rand(10000, 99999),
-            ]);
+            for ($i = 0; $i < 2; $i++) {
+                //User in TX
+                $random_thing_key = array_rand($thing, 1);
+                $random_password = Str::random(10);
+                array_push($pass_arr, $random_password);
+                DB::table('users')->insert([
+                    'name' => Str::random(10),
+                    'email' => Str::random(10).'@gmail.com',
+                    'password' => Hash::make($random_password),
+                    'address1' => rand(1, 1000).' '.Str::random(10).' '.$thing[$random_thing_key],
+                    'city' => Str::random(10),
+                    'state' => 'TX',
+                    'zipcode' => rand(10000, 99999),
+                ]);
 
-            //User out TX
-            $random_thing_key = array_rand($thing, 1);
-            $random_password = Str::random(10);
-            array_push($pass_arr, $random_password);
-            DB::table('users')->insert([
-                'name' => Str::random(10),
-                'email' => Str::random(10).'@gmail.com',
-                'password' => Hash::make($random_password),
-                'address1' => rand(1, 1000).' '.Str::random(10).' '.$thing[$random_thing_key],
-                'city' => Str::random(10),
-                'state' => 'CA',
-                'zipcode' => rand(10000, 99999),
-            ]);
-            
+                //User out TX
+                $random_thing_key = array_rand($thing, 1);
+                $random_password = Str::random(10);
+                array_push($pass_arr, $random_password);
+                DB::table('users')->insert([
+                    'name' => Str::random(10),
+                    'email' => Str::random(10).'@gmail.com',
+                    'password' => Hash::make($random_password),
+                    'address1' => rand(1, 1000).' '.Str::random(10).' '.$thing[$random_thing_key],
+                    'city' => Str::random(10),
+                    'state' => 'CA',
+                    'zipcode' => rand(10000, 99999),
+                ]);
+            }
             //Random Users
             for ($i = 0; $i < 3; $i++) {
                 $random_thing_key = array_rand($thing, 1);
@@ -87,27 +88,47 @@ class DatabaseSeeder extends Seeder
             file_put_contents('fake_user_accs.txt', $acc_string, FILE_APPEND | LOCK_EX);
         }
         }
-
+        //Adding user Fuel Quote histories
         if(DB::table('users')->count() > 0){
             $user_arr_count = count($user_arr);
             //$user_id_arr_key = array_rand($user_id_arr, 1);
             //echo $user_arr;
             for ($i = 0; $i < 10; $i++) {
-                $rand_user = $user_arr[rand(0, $user_arr_count - 1)];
+                //reserve user 1 and 2 for unit testing
+                $rand_user = $user_arr[rand(2, $user_arr_count - 1)];
+
                 if($rand_user->state == 'TX'){
-                    $SP = 2.0;
+                    $locationFactor = 0.02;
                 }
                 else {
-                    $SP = 3.0;
+                    $locationFactor = 0.04;
                 }
+                if(DB::table('quote_histories')->where('user_id', $rand_user->id)->count() > 0){
+                    $HistoryFactor = 0.01;
+                }
+                else{
+                    $HistoryFactor = 0.0;
+                }
+
                 $G = rand(1, 50) * 100;
+                if($G >= 1000){
+                    $GallonsRequestedFactor = 0.02;
+                }
+                else{
+                    $GallonsRequestedFactor = 0.03;
+                }
+
+                $CompanyProfit = 0.10;
+        
+                $Suggested_Price = ($locationFactor - $HistoryFactor + $CompanyProfit + $GallonsRequestedFactor) * 1.5 + 1.5;
+
                 DB::table('quote_histories')->insert([
                     'user_id' => $rand_user->id,
                     'Gallons' => $G,
                     'Address' => $rand_user->address1.' '.$rand_user->city.' '.$rand_user->state.' '.$rand_user->zipcode,
-                    'start' => date("Y-m-d H:i:s", mt_rand(time(),time() + (180 * 24 * 60 * 60))),
-                    'Suggested_Price' => $SP,
-                    'Due' => $SP * $G,
+                    'start' => date("Y-m-d", mt_rand(time(),time() + (180 * 24 * 60 * 60))),
+                    'Suggested_Price' => $Suggested_Price,
+                    'Due' => $Suggested_Price * $G,
                 ]);
             }
         }
