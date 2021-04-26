@@ -22,8 +22,8 @@ class FuelQuoteHistoryTable extends Migration
             $t -> float('Gallons', 200)->nullable();
             $t -> string('Address', 500)->nullable();
             $t -> timestamp('start')->nullable();
-            $t -> float('Suggested_Price')->nullable();
-            $t -> float('Due')->nullable();
+            $t -> double('Suggested_Price')->nullable();
+            $t -> double('Due')->nullable();
         });
 
     }

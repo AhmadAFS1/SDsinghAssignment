@@ -93,5 +93,4 @@ class SDwebsiteTest extends TestCase
         $response = $this->get('/register');
         $response->assertStatus(302);
     }
-
 }

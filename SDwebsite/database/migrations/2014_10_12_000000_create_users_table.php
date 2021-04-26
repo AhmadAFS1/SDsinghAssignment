@@ -20,7 +20,12 @@ class CreateUsersTable extends Migration
             $table->string('address1')->nullable();
             $table->string('address2')->nullable();
             $table->string('city')->nullable();
-            $table->string('state')->nullable();
+            $table->enum('state', ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", 
+            "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", 
+            "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", 
+            "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", 
+            "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", 
+            "WY"])->nullable();
             $table->string('zipcode')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

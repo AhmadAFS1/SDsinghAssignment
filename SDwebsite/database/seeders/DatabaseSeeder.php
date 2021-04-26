@@ -110,7 +110,7 @@ class DatabaseSeeder extends Seeder
                     $HistoryFactor = 0.0;
                 }
 
-                $G = rand(1, 50) * 100;
+                $G = rand(1, 5000);
                 if($G >= 1000){
                     $GallonsRequestedFactor = 0.02;
                 }
@@ -128,7 +128,7 @@ class DatabaseSeeder extends Seeder
                     'Address' => $rand_user->address1.' '.$rand_user->city.' '.$rand_user->state.' '.$rand_user->zipcode,
                     'start' => date("Y-m-d", mt_rand(time(),time() + (180 * 24 * 60 * 60))),
                     'Suggested_Price' => $Suggested_Price,
-                    'Due' => $Suggested_Price * $G,
+                    'Due' => round(($Suggested_Price * $G + 0.5) * 100)/100,
                 ]);
             }
         }
